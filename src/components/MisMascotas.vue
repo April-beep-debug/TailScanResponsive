@@ -77,6 +77,7 @@ onMounted(async () => {
 
 <template>
 <div class="page">
+  <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
   <div class="bg-blob bg-blob-left"></div>
   <div class="bg-blob bg-blob-right"></div>
 
@@ -147,6 +148,22 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.page-back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .9);
+  color: #1e3a8a;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(30, 58, 138, .12);
+}
+
 * {
   box-sizing: border-box;
 }

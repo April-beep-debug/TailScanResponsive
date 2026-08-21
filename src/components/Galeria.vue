@@ -1,5 +1,6 @@
 <template>
 <div>
+<button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
 <section class="hero galeria-hero">
   <div class="blob orange"></div>
   <div class="blob blue"></div>
@@ -149,6 +150,13 @@
 </template>
 
 <style>
+.page-back-button{
+  position:fixed;top:20px;left:20px;z-index:20;width:44px;height:44px;
+  border:none;border-radius:50%;background:rgba(255,255,255,.9);
+  color:#1e3a8a;font-size:22px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(30,58,138,.12);
+}
+
 :root{
   --blue:#1d4fd7;
   --blue-dark:#123a9e;
@@ -161,6 +169,7 @@
   --line:#e6e9f2;
 }
 *{box-sizing:border-box;}
+html,#app{margin:0;padding:0;}
 body{
   margin:0;
   font-family:'Segoe UI',Helvetica,Arial,sans-serif;
@@ -182,7 +191,7 @@ a{text-decoration:none;color:inherit;}
 .hero *{position:relative;z-index:1;}
 
 /* Strong override for this component's hero to avoid other global rules */
-.galeria-hero{padding:12px 16px 12px !important;min-height:80px !important}
+.galeria-hero{margin-top:0 !important;padding:12px 16px 12px !important;min-height:80px !important}
 .galeria-hero .blob{display:block}
 .galeria-hero .blob.orange{top:-60px;right:-80px;width:200px;height:200px}
 .galeria-hero .blob.blue{bottom:-40px;left:-40px;width:120px;height:120px}

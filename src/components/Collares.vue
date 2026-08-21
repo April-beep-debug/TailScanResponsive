@@ -255,6 +255,12 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import collarBordadoImg from '../assets/img/collar bordado mascota.png'
+import collarCueroImg from '../assets/img/collar clasico cuero.jpg'
+import collarTrenzadoImg from '../assets/img/collar clasico trenzado.jpg'
+import collarPremiumImg from '../assets/img/collar premium acero.png'
+import collarReflectivoNocturnoImg from '../assets/img/collar refelctivo octurno.png'
+import collarReflectivoAjustableImg from '../assets/img/collar reflectivo ajustable.png'
 
 const categorias = ref([
   'Todos',
@@ -282,7 +288,7 @@ const collares = ref([
     precio: 14.99,
     precioAnterior: 18.99,
     destacado: true,
-    imagen: '/img/collares/clasico-cuero.jpg'
+    imagen: collarCueroImg
   },
   {
     id: 2,
@@ -293,7 +299,7 @@ const collares = ref([
     categoria: 'Reflectivos',
     colores: ['#0f172a', '#f97316'],
     precio: 12.5,
-    imagen: '/img/collares/reflectivo.jpg'
+    imagen: collarReflectivoNocturnoImg
   },
   {
     id: 3,
@@ -305,7 +311,7 @@ const collares = ref([
     colores: ['#f472b6', '#60a5fa', '#facc15'],
     precio: 16.0,
     destacado: true,
-    imagen: '/img/collares/bordado.jpg'
+    imagen: collarBordadoImg
   },
   {
     id: 4,
@@ -316,7 +322,7 @@ const collares = ref([
     categoria: 'Premium',
     colores: ['#334155', '#eab308'],
     precio: 24.99,
-    imagen: '/img/collares/premium-acero.jpg'
+    imagen: collarPremiumImg
   },
   {
     id: 5,
@@ -327,7 +333,7 @@ const collares = ref([
     categoria: 'Clásicos',
     colores: ['#1e3a8a', '#16a34a', '#0f172a'],
     precio: 13.5,
-    imagen: '/img/collares/trenzado.jpg'
+    imagen: collarTrenzadoImg
   },
   {
     id: 6,
@@ -338,7 +344,7 @@ const collares = ref([
     categoria: 'Reflectivos',
     colores: ['#0ea5e9', '#f97316', '#1e293b'],
     precio: 11.99,
-    imagen: '/img/collares/reflectivo-ajustable.jpg'
+    imagen: collarReflectivoAjustableImg
   }
 ])
 

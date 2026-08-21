@@ -19,6 +19,7 @@ const categoriaActiva = ref('Productos')
 
 <template>
   <div class="page">
+    <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
     <!-- Blobs decorativos -->
     <div class="blob blob-orange"></div>
     <div class="dots-deco">
@@ -157,6 +158,22 @@ const categoriaActiva = ref('Productos')
 </template>
 
 <style scoped>
+.page-back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .9);
+  color: #1e3a8a;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(30, 58, 138, .12);
+}
+
 * {
   box-sizing: border-box;
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="consejos-container">
+    <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
     <!-- HERO / FORM -->
     <section class="hero-wrap">
       <div class="blob-left"></div>
@@ -119,6 +120,22 @@ const enviarConsejo = () => {
 </script>
 
 <style scoped>
+.page-back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .9);
+  color: #1e3a8a;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(30, 58, 138, .12);
+}
+
 :root {
   --blue-900: #0d1f6e;
   --blue-700: #1e40c9;
