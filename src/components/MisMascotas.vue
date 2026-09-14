@@ -82,7 +82,6 @@ onMounted(async () => {
   <div class="bg-blob bg-blob-right"></div>
 
   <header class="topbar">
-    <button class="back-link" @click="irAInicio">⬅ Inicio</button>
     <div class="brand">
       <img src="/src/assets/img/mascota.png" alt="TailScan" class="brand-img" />
       <span><span class="tail">Tail</span><span class="scan">Scan</span></span>
@@ -270,7 +269,7 @@ onMounted(async () => {
 
 .title-block {
   text-align: center;
-  color: #ffffff;
+  color: #190eb3;
   margin-bottom: 32px;
 }
 

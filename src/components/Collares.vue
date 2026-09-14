@@ -50,7 +50,6 @@
         Collares <span class="accent">personalizados</span>
       </h1>
 
-
       <div class="benefits">
         <span>✓ QR integrado</span>
         <span>✓ Diseños únicos</span>
