@@ -21,7 +21,7 @@
         <button
           class="icon-btn"
           @click="$router.back()"
-          aria-label="Volver"
+          aria-label="Back"
         >
           ←
         </button>
@@ -29,7 +29,7 @@
 
 
       <h1>
-        Finaliza tu <span>pedido</span>
+        Finish your <span>order</span>
       </h1>
     </header>
 
@@ -38,8 +38,8 @@
       <div class="step active">
         <span>1</span>
         <div>
-          <strong>Pago</strong>
-          <small>Forma de pago</small>
+          <strong>Payment</strong>
+          <small>Payment method</small>
         </div>
       </div>
 
@@ -50,8 +50,8 @@
       >
         <span>2</span>
         <div>
-          <strong>Personalización</strong>
-          <small>Datos de envío</small>
+          <strong>Personalization</strong>
+          <small>Shipping details</small>
         </div>
       </div>
 
@@ -62,8 +62,8 @@
       >
         <span>3</span>
         <div>
-          <strong>Listo</strong>
-          <small>Pedido confirmado</small>
+          <strong>Done</strong>
+          <small>Order confirmed</small>
         </div>
       </div>
     </div>
@@ -75,8 +75,8 @@
 
         <div class="resumen-header">
           <div>
-            <span class="section-kicker">TU COMPRA</span>
-            <h2>Resumen del pedido</h2>
+            <span class="section-kicker">YOUR ORDER</span>
+            <h2>Order summary</h2>
           </div>
 
           <span class="cart-icon">🛒</span>
@@ -105,14 +105,14 @@
 
         <div v-else class="empty-cart">
           <span>🐾</span>
-          <p>No hay productos en el carrito.</p>
+          <p>There are no products in the cart.</p>
         </div>
 
         <div class="secure-box">
           <span>🔒</span>
           <div>
-            <strong>Compra segura</strong>
-            <small>Tus datos están protegidos.</small>
+            <strong>Secure purchase</strong>
+            <small>Your data is protected.</small>
           </div>
         </div>
 
@@ -132,13 +132,13 @@
           <div class="section-title">
             <div class="title-icon">💳</div>
             <div>
-              <span class="section-kicker">PASO 1</span>
-              <h2>Forma de pago</h2>
+              <span class="section-kicker">STEP 1</span>
+              <h2>Payment method</h2>
             </div>
           </div>
 
           <p class="section-description">
-            Selecciona cómo deseas realizar el pago de tu collar.
+            Select how you would like to pay for your collar.
           </p>
 
           <div class="payment-methods">
@@ -160,8 +160,8 @@
               <span class="payment-icon">💵</span>
 
               <span class="payment-content">
-                <strong>Pago en efectivo</strong>
-                <small>Realiza el pago según las indicaciones.</small>
+                <strong>Cash payment</strong>
+                <small>Make the payment according to the instructions.</small>
               </span>
 
               <span class="check">✓</span>
@@ -184,8 +184,8 @@
               <span class="payment-icon">💳</span>
 
               <span class="payment-content">
-                <strong>Tarjeta</strong>
-                <small>Crédito o débito.</small>
+                <strong>Card</strong>
+                <small>Credit or debit.</small>
               </span>
 
               <span class="check">✓</span>
@@ -211,13 +211,13 @@
 
               <div class="fake-card-bottom">
                 <div>
-                  <small>TITULAR</small>
-                  <strong>{{ cardName || 'TU NOMBRE' }}</strong>
+                  <small>CARDHOLDER</small>
+                  <strong>{{ cardName || 'YOUR NAME' }}</strong>
                 </div>
 
                 <div>
-                  <small>EXPIRA</small>
-                  <strong>{{ cardExpiry || 'MM/AA' }}</strong>
+                  <small>EXPIRES</small>
+                  <strong>{{ cardExpiry || 'MM/YY' }}</strong>
                 </div>
               </div>
             </div>
@@ -225,15 +225,15 @@
             <div class="form-grid">
 
               <label class="field full">
-                <span>Nombre en la tarjeta</span>
+                <span>Name on card</span>
                 <input
                   v-model="cardName"
-                  placeholder="Nombre completo"
+                  placeholder="Full name"
                 />
               </label>
 
               <label class="field full">
-                <span>Número de tarjeta</span>
+                <span>Card number</span>
                 <input
                   v-model="cardNumber"
                   placeholder="1234 5678 9012 3456"
@@ -242,10 +242,10 @@
               </label>
 
               <label class="field">
-                <span>Fecha de expiración</span>
+                <span>Expiration date</span>
                 <input
                   v-model="cardExpiry"
-                  placeholder="MM/AA"
+                  placeholder="MM/YY"
                   maxlength="5"
                 />
               </label>
@@ -266,13 +266,13 @@
               class="primary-btn"
               @click="procesarPago"
             >
-              Continuar
+              Continue
               <span>→</span>
             </button>
 
           </div>
 
-          <!-- EFECTIVO -->
+          <!-- CASH -->
           <div
             v-if="paymentMethod === 'efectivo'"
             class="cash-box"
@@ -280,10 +280,10 @@
             <div class="cash-icon">💵</div>
 
             <div>
-              <strong>Pago en efectivo</strong>
+              <strong>Cash payment</strong>
               <p>
-                Has elegido pagar en efectivo. Continúa para
-                ingresar los datos de envío y personalización.
+                You chose to pay in cash. Continue to enter your
+                shipping and personalization details.
               </p>
             </div>
           </div>
@@ -293,13 +293,13 @@
             class="primary-btn"
             @click="procesarPago"
           >
-            Continuar
+            Continue
             <span>→</span>
           </button>
 
         </section>
 
-        <!-- PERSONALIZACIÓN -->
+        <!-- PERSONALIZATION -->
         <transition name="fade">
           <section
             v-if="paymentProcessed && !orderConfirmed"
@@ -309,31 +309,31 @@
             <div class="section-title">
               <div class="title-icon orange">🐾</div>
               <div>
-                <span class="section-kicker">PASO 2</span>
-                <h2>Personaliza tu pedido</h2>
+                <span class="section-kicker">STEP 2</span>
+                <h2>Personalize your order</h2>
               </div>
             </div>
 
             <p class="section-description">
-              Cuéntanos a quién pertenece el collar y dónde debemos enviarlo.
+              Tell us who the collar belongs to and where we should send it.
             </p>
 
             <div class="form-block">
 
-              <h3>📦 Información de envío</h3>
+              <h3>📦 Shipping information</h3>
 
               <div class="form-grid">
 
                 <label class="field">
-                  <span>Nombre del cliente</span>
+                  <span>Customer name</span>
                   <input
                     v-model="buyerName"
-                    placeholder="Tu nombre"
+                    placeholder="Your name"
                   />
                 </label>
 
                 <label class="field">
-                  <span>Teléfono</span>
+                  <span>Phone</span>
                   <input
                     v-model="buyerPhone"
                     placeholder="+503 0000-0000"
@@ -341,26 +341,26 @@
                 </label>
 
                 <label class="field full">
-                  <span>Dirección de envío</span>
+                  <span>Shipping address</span>
                   <input
                     v-model="address"
-                    placeholder="Calle, número, colonia..."
+                    placeholder="Street, number, neighborhood..."
                   />
                 </label>
 
                 <label class="field">
-                  <span>Ciudad</span>
+                  <span>City</span>
                   <input
                     v-model="city"
-                    placeholder="Ciudad"
+                    placeholder="City"
                   />
                 </label>
 
                 <label class="field">
-                  <span>Código postal</span>
+                  <span>Postal code</span>
                   <input
                     v-model="postal"
-                    placeholder="Código postal"
+                    placeholder="Postal code"
                   />
                 </label>
 
@@ -370,39 +370,39 @@
 
             <div class="form-block pet-block">
 
-              <h3>🐶 Datos de tu mascota</h3>
+              <h3>🐶 Your pet's details</h3>
 
               <div class="form-grid">
 
                 <label class="field">
-                  <span>Nombre</span>
+                  <span>Name</span>
                   <input
                     v-model="petName"
-                    placeholder="Nombre de tu mascota"
+                    placeholder="Your pet's name"
                   />
                 </label>
 
                 <label class="field">
-                  <span>Especie</span>
+                  <span>Species</span>
                   <input
                     v-model="petSpecies"
-                    placeholder="Perro / Gato"
+                    placeholder="Dog / Cat"
                   />
                 </label>
 
                 <label class="field">
-                  <span>Raza</span>
+                  <span>Breed</span>
                   <input
                     v-model="petBreed"
-                    placeholder="Raza"
+                    placeholder="Breed"
                   />
                 </label>
 
                 <label class="field">
-                  <span>Tamaño</span>
+                  <span>Size</span>
                   <input
                     v-model="petSize"
-                    placeholder="Pequeño / Mediano / Grande"
+                    placeholder="Small / Medium / Large"
                   />
                 </label>
 
@@ -415,13 +415,13 @@
               <div class="upload-icon">📱</div>
 
               <div class="upload-content">
-                <strong>Adjunta tu código QR</strong>
+                <strong>Attach your QR code</strong>
                 <p>
-                  Sube la imagen del QR que quieres utilizar en el collar.
+                  Upload the QR image you want to use on the collar.
                 </p>
 
                 <label class="upload-btn">
-                  Seleccionar imagen
+                  Select image
                   <input
                     type="file"
                     accept="image/*"
@@ -449,7 +449,7 @@
             <div class="estimated">
               <span>🚚</span>
               <div>
-                <small>FECHA ESTIMADA DE LLEGADA</small>
+                <small>ESTIMATED DELIVERY DATE</small>
                 <strong>{{ estimatedDate }}</strong>
               </div>
             </div>
@@ -459,7 +459,7 @@
                 class="confirmar-btn"
                 @click="submitOrder"
               >
-                Confirmar pedido
+                Confirm order
                 <span>✓</span>
               </button>
 
@@ -467,7 +467,7 @@
                 class="cancel-btn"
                 @click="$router.back()"
               >
-                Cancelar
+                Cancel
               </button>
             </div>
 
@@ -486,18 +486,18 @@
 
             <span class="section-kicker">TAILSCAN SHOP</span>
 
-            <h2>¡Pedido confirmado!</h2>
+            <h2>Order confirmed!</h2>
 
             <p>
-              Gracias <strong>{{ buyerName }}</strong>.
-              Tu pedido llegará aproximadamente el
+              Thank you, <strong>{{ buyerName }}</strong>.
+              Your order will arrive approximately on
               <strong>{{ estimatedDate }}</strong>.
             </p>
 
             <div class="confirmation-card">
               <div>
-                <span>Estado</span>
-                <strong>✓ Pedido recibido</strong>
+                <span>Status</span>
+                <strong>✓ Order received</strong>
               </div>
 
               <div>
@@ -510,7 +510,7 @@
               class="primary-btn"
               @click="volverHome"
             >
-              Volver a la tienda
+              Back to shop
               <span>→</span>
             </button>
           </section>
@@ -585,7 +585,7 @@ function procesarPago() {
       !cardExpiry.value ||
       !cardCvv.value
     ) {
-      alert('Por favor completa los datos de la tarjeta.')
+      alert('Please complete the card details.')
       return
     }
   }
@@ -595,7 +595,7 @@ function procesarPago() {
 
 function submitOrder() {
   if (!buyerName.value || !address.value) {
-    alert('Por favor completa nombre y dirección.')
+    alert('Please complete your name and address.')
     return
   }
 
@@ -617,7 +617,7 @@ function submitOrder() {
     estimated: estimatedDateValue()
   }
 
-  console.log('Pedido TailScan:', order)
+  console.log('TailScan order:', order)
 
   try {
     localStorage.removeItem('tailscan_cart')

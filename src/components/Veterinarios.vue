@@ -7,20 +7,20 @@
     <!-- Header -->
     <header class="mg-header">
       <div class="header-top">
-        <button class="icon-btn grid-btn" aria-label="Menú">
+        <button class="icon-btn grid-btn" aria-label="Menu">
           <span class="dot" v-for="n in 6" :key="n"></span>
         </button>
-        <button class="icon-btn back-btn" @click="$router.back()" aria-label="Volver">
+        <button class="icon-btn back-btn" @click="$router.back()" aria-label="Back">
           ←
         </button>
       </div>
 
       <h1 class="title">
         <span class="icon-circle">🩺</span>
-        Medicina General
+        General Medicine
         <span class="paw">🐾</span>
       </h1>
-      <p class="subtitle">Atención preventiva, consultas generales y chequeos de rutina.</p>
+      <p class="subtitle">Preventive care, general consultations, and routine checkups.</p>
     </header>
 
     <!-- Grid de veterinarios -->
@@ -35,12 +35,12 @@
           <div class="vet-details">
             <h2 class="vet-name">
               {{ vet.nombre }}
-              <span class="verified" title="Verificado">✔</span>
+              <span class="verified" title="Verified">✔</span>
             </h2>
             <p class="vet-role">{{ vet.rol }}</p>
             <p class="vet-lic">{{ vet.licencia }}</p>
             <p class="vet-location">📍 {{ vet.ubicacion }}</p>
-            <p class="vet-exp">⭐ {{ vet.experiencia }} años de experiencia</p>
+            <p class="vet-exp">⭐ {{ vet.experiencia }} years of experience</p>
           </div>
         </div>
 
@@ -51,7 +51,7 @@
           class="contact-btn"
         >
           <span class="wa-icon">💬</span>
-          Contáctame ya
+          Contact me now
         </a>
       </article>
     </section>
@@ -71,7 +71,7 @@ const veterinarios = ref([
   {
     id: 1,
     nombre: 'Dra. Valeria Ramírez',
-    rol: 'Médica Veterinaria Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 1234',
     ubicacion: 'San Salvador, El Salvador',
     experiencia: 8,
@@ -81,7 +81,7 @@ const veterinarios = ref([
   {
     id: 2,
     nombre: 'Dr. Alejandro Torres',
-    rol: 'Médico Veterinario Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 9876',
     ubicacion: 'Santa Tecla, El Salvador',
     experiencia: 10,
@@ -91,7 +91,7 @@ const veterinarios = ref([
   {
     id: 3,
     nombre: 'Dra. Mariana López',
-    rol: 'Médica Veterinaria Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 5678',
     ubicacion: 'Antiguo Cuscatlán, El Salvador',
     experiencia: 6,
@@ -101,7 +101,7 @@ const veterinarios = ref([
   {
     id: 4,
     nombre: 'Dr. Diego Hernández',
-    rol: 'Médico Veterinario Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 4567',
     ubicacion: 'Sonsonate, El Salvador',
     experiencia: 7,
@@ -111,7 +111,7 @@ const veterinarios = ref([
   {
     id: 5,
     nombre: 'Dra. Sofía Gutiérrez',
-    rol: 'Médica Veterinaria Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 6789',
     ubicacion: 'San Miguel, El Salvador',
     experiencia: 9,
@@ -121,7 +121,7 @@ const veterinarios = ref([
   {
     id: 6,
     nombre: 'Dr. Carlos Mendoza',
-    rol: 'Médico Veterinario Zootecnista',
+    rol: 'Veterinary Doctor and Animal Scientist',
     licencia: 'Lic. Vet. 3456',
     ubicacion: 'La Libertad, El Salvador',
     experiencia: 5,

@@ -44,6 +44,12 @@ const cerrarSesion = async () => {
   router.push('/')
 }
 
+const menuAbierto = ref(false)
+
+const cerrarMenu = () => {
+  menuAbierto.value = false
+}
+
 onMounted(async () => {
   const { data } = await insforge.auth.getCurrentUser()
   usuario.value = data?.user || null
@@ -75,28 +81,38 @@ onMounted(async () => {
     <span></span><span></span><span></span>
   </div>
  
-  <header>
+  <header class="home-header">
     <div class="logo">
-      <img src="../assets/img/mascota.png" alt="Mascota" class="logo-img" />
+      <img src="../assets/img/mascota.png" alt="Pet" class="logo-img" />
       <span class="tail">Tail</span><span class="scan">Scan</span>
     </div>
-    <nav>
-      <a href="#" class="active">Inicio</a>
-      <a href="#" @click.prevent="irAGenerarQR">Registrar Mascota</a>
-      <a href="#" @click.prevent="irAlMapa">Adopción y Perdidos</a>
-      <a href="#" @click.prevent="irAConsejos">Cuidados</a>
-      <a href="#" @click.prevent="irAGaleria">Galería</a>
+    <button
+      class="menu-toggle"
+      type="button"
+      :aria-expanded="menuAbierto"
+      aria-controls="home-navigation"
+      aria-label="Open navigation menu"
+      @click="menuAbierto = !menuAbierto"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="home-navigation" :class="{ 'is-open': menuAbierto }" @click="cerrarMenu">
+      <a href="#" class="active" @click.prevent="cerrarMenu">Home</a>
+      <a href="#" @click.prevent="irAGenerarQR(); cerrarMenu()">Register a Pet</a>
+      <a href="#" @click.prevent="irAlMapa(); cerrarMenu()">Adoption and Lost Pets</a>
+      <a href="#" @click.prevent="irAConsejos(); cerrarMenu()">Care</a>
+      <a href="#" @click.prevent="irAGaleria(); cerrarMenu()">Gallery</a>
     </nav>
     <div class="header-right">
       <button
         class="user-avatar"
-        title="Mis mascotas registradas"
+        title="My registered pets"
         @click="irAMisMascotas"
       >
-        <img v-if="usuario?.profile?.avatar_url" :src="usuario.profile.avatar_url" alt="Foto de perfil" />
+        <img v-if="usuario?.profile?.avatar_url" :src="usuario.profile.avatar_url" alt="Profile photo" />
         <span v-else class="user-avatar-fallback">{{ inicialAvatar(usuario) }}</span>
       </button>
-      <button class="logout-btn" title="Cerrar sesión" aria-label="Cerrar sesión" @click="cerrarSesion">
+      <button class="logout-btn" title="Log out" aria-label="Log out" @click="cerrarSesion">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
       </button>
     </div>
@@ -105,17 +121,17 @@ onMounted(async () => {
   <div class="hero-layout">
     <div class="card">
       <div class="hero-text">
-        <h1>¡Bienvenido/a a <span class="accent">TailScan</span>! 🐾</h1>
-        <p>Nos alegra tenerte aquí. Registra a tu mascota con QR, adopta un nuevo compañero, accede a servicios profesionales y ayuda a reportar animales perdidos.</p>
-        <p>Cada cola merece ser feliz. Gracias por formar parte de esta comunidad llena de amor y huellitas.</p>
+        <h1>Welcome to <span class="accent">TailScan</span>! 🐾</h1>
+        <p>We are glad you are here. Register your pet with a QR code, adopt a new companion, access professional services, and help report lost animals.</p>
+        <p>Every tail deserves to be happy. Thank you for being part of this loving community.</p>
         <div class="buttons">
-          <button class="btn btn-primary" @click="irAGenerarQR">🐾 Registrar Mascota</button>
+          <button class="btn btn-primary" @click="irAGenerarQR">🐾 Register a Pet</button>
         </div>
       </div>
     </div>
 
     <div class="hero-side-image">
-      <img src="../assets/img/hero.png" alt="Mascota" />
+      <img src="../assets/img/hero.png" alt="Pet" />
     </div>
   </div>
 </div>
@@ -141,8 +157,8 @@ onMounted(async () => {
   </div>
  
   <section class="hero">
-    <h1>Todo para el bienestar<br>de tu <span class="accent">mejor amigo</span> 🐾</h1>
-    <p>Conecta, cuida y mejora la vida de las mascotas<br>desde un solo lugar.</p>
+    <h1>Everything for your pet's<br>well-being, your <span class="accent">best friend</span> 🐾</h1>
+    <p>Connect, care for, and improve pets' lives<br>from one place.</p>
   </section>
  
   <div class="cards">
@@ -175,19 +191,19 @@ onMounted(async () => {
           </g>
         </svg>
       </div>
-      <h3>Adopción y perdidos</h3>
-      <p>Encuentra, ayuda y da un hogar lleno de amor.</p>
+      <h3>Adoption and lost pets</h3>
+      <p>Find, help, and provide a loving home.</p>
       <a class="link-row" href="#" @click.prevent="irAlMapa">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Reportes en mapa
+          Reports on the map
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
       <a class="link-row" href="#" @click.prevent="irAGaleria">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-          Galería de adopción
+          Adoption gallery
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
@@ -220,26 +236,26 @@ onMounted(async () => {
           </g>
         </svg>
       </div>
-      <h3>Cuidados</h3>
-      <p>Información y herramientas para una vida saludable.</p>
+      <h3>Care</h3>
+      <p>Information and tools for a healthy life.</p>
       <a class="link-row" href="#" @click.prevent="irAGenerarQR">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="16" y1="16" x2="16" y2="20"/><line x1="20" y1="16" x2="20" y2="20"/></svg>
-          Código QR
+          QR code
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
       <a class="link-row" href="#" @click.prevent="irAConsejos">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/></svg>
-          Preguntas frecuentes
+          Frequently asked questions
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
       <a class="link-row" href="#" @click.prevent="irADonaciones">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l5 5-9 9H7v-5l9-9z"/><line x1="14" y1="5" x2="19" y2="10"/></svg>
-          Donaciones
+          Donations
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
@@ -271,19 +287,19 @@ onMounted(async () => {
           </g>
         </svg>
       </div>
-      <h3>Servicios</h3>
-      <p>Encuentra los mejores servicios y productos para tu mascota.</p>
+      <h3>Services</h3>
+      <p>Find the best services and products for your pet.</p>
       <a class="link-row" href="#" @click.prevent="irAVeterinarios">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-4.5-9-9.5C1 6.5 4 3 8 4.5c2 .8 3 2.5 4 4 1-1.5 2-3.2 4-4 4-1.5 7 2 5 7-3 5-9 9.5-9 9.5z" opacity="0"/><path d="M4 14a5 5 0 015-5h1v5H8"/><rect x="9" y="9" width="6" height="10" rx="2"/><circle cx="12" cy="6" r="3"/></svg>
-          Veterinarios
+          Veterinarians
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
       <a class="link-row" href="#" @click.prevent="irACollares">
         <span class="link-left">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.5 12.5h11l2.5-8h-15"/></svg>
-          Tiendas de collares personalizados
+          Custom collar shop
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
       </a>
@@ -296,8 +312,8 @@ onMounted(async () => {
 <div class="team-section">
   <div class="team-container">
     <div class="team-header">
-      <h2>Nuestro <span class="accent">Equipo</span> 🐾</h2>
-      <p>Personas apasionadas que trabajan cada día para mejorar la vida de las mascotas.</p>
+      <h2>Our <span class="accent">Team</span> 🐾</h2>
+      <p>Passionate people working every day to improve pets' lives.</p>
     </div>
 
     <div class="team-grid">
@@ -372,7 +388,7 @@ onMounted(async () => {
             <path d="M75 25 L78 32 M82 20 L86 26 M68 22 L70 29" stroke-linecap="round"/>
           </svg>
         </div>
-        <p>Trabajamos con amor, dedicación y compromiso para crear soluciones que conecten y cuiden a las mascotas y a quienes las aman.</p>
+        <p>We work with love, dedication, and commitment to create solutions that connect and care for pets and the people who love them.</p>
       </div>
     </div>
   </div>
@@ -388,31 +404,31 @@ onMounted(async () => {
         <span class="paw">🐾</span>
         <span class="tail">Tail<span class="scan">Scan</span></span>
       </div>
-      <p>Cada cola merece ser feliz. Conectamos mascotas, familias y comunidad. 🐾</p>
+      <p>Every tail deserves to be happy. We connect pets, families, and community. 🐾</p>
     </div>
  
     <div class="col">
-      <h4>Navegación</h4>
+      <h4>Navigation</h4>
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Registrar Mascota</a></li>
-        <li><a href="#">Adoptar</a></li>
-        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Register a Pet</a></li>
+        <li><a href="#">Adopt</a></li>
+        <li><a href="#">Services</a></li>
       </ul>
     </div>
  
     <div class="col">
-      <h4>Comunidad</h4>
+      <h4>Community</h4>
       <ul>
-        <li><a href="#">Consejos</a></li>
-        <li><a href="#">Reportar mascota perdida</a></li>
-        <li><a href="#">Donar</a></li>
-        <li><a href="#">Nuestro equipo</a></li>
+        <li><a href="#">Tips</a></li>
+        <li><a href="#">Report a lost pet</a></li>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Our team</a></li>
       </ul>
     </div>
  
     <div class="col">
-      <h4>Síguenos</h4>
+      <h4>Follow us</h4>
       <div class="social-icons">
         <a href="#" aria-label="App">📱</a>
         <a href="#" aria-label="Instagram">📷</a>
@@ -423,8 +439,8 @@ onMounted(async () => {
   </div>
  
   <div class="footer-bottom">
-    <span>© 2026 TailScan. Todos los derechos reservados.</span>
-    <span>Hecho con 🐾 por el equipo TailScan</span>
+    <span>© 2026 TailScan. All rights reserved.</span>
+    <span>Made with 🐾 by the TailScan team</span>
   </div>
 </footer>
 </template>
@@ -1313,6 +1329,206 @@ onMounted(async () => {
     .photo-wrap {
       width: 140px;
       height: 140px;
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    border: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .8);
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    margin: 5px 0;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  @media (max-width: 700px) {
+    .home-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+
+    .home-header .logo {
+      min-width: 0;
+      font-size: 21px;
+    }
+
+    .home-header .header-right {
+      grid-column: 1 / -1;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .home-header .menu-toggle {
+      display: block;
+      justify-self: end;
+    }
+
+    .home-header nav {
+      display: none;
+      grid-column: 1 / -1;
+      width: 100%;
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 12px 30px rgba(30, 58, 138, .12);
+    }
+
+    .home-header nav.is-open {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+    }
+
+    .home-header nav a {
+      padding: 12px 14px;
+      border-radius: 9px;
+    }
+
+    .home-header nav a:hover,
+    .home-header nav a.active {
+      background: #f1f5ff;
+      border-bottom: 0;
+    }
+
+    .hero-layout {
+      margin-top: 8px;
+      padding: 0 14px;
+      gap: 14px;
+    }
+
+    .hero-layout .card {
+      padding: 28px 20px;
+      border-radius: 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 28px;
+    }
+
+    .hero-side-image {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .team-section {
+      padding: 42px 14px 56px;
+    }
+
+    .team-header {
+      margin-bottom: 28px;
+    }
+
+    .team-header h2 {
+      font-size: 30px;
+    }
+
+    .team-header p {
+      font-size: 14px;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .team-card {
+      grid-column: span 1;
+      min-width: 0;
+      padding: 16px 8px 14px;
+      border-radius: 16px;
+    }
+
+    .badge-icon {
+      top: 9px;
+      left: 9px;
+      width: 25px;
+      height: 25px;
+      font-size: 11px;
+    }
+
+    .photo-wrap {
+      width: 82px;
+      height: 82px;
+      padding: 4px;
+      margin-bottom: 11px;
+    }
+
+    .paw-tag {
+      right: -1px;
+      bottom: 0;
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+    }
+
+    .team-card h3 {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .team-card .role {
+      min-height: 32px;
+      margin-bottom: 8px;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .mini-divider {
+      gap: 5px;
+    }
+
+    .mini-divider .line {
+      width: 22px;
+    }
+
+    .quote-card {
+      grid-column: span 2;
+      padding: 22px 16px;
+      gap: 10px;
+    }
+
+    .quote-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .quote-icon svg {
+      width: 58px;
+      height: 58px;
+    }
+
+    .quote-card p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding: 36px 20px 20px;
+    }
+
+    .footer-content {
+      gap: 24px;
+    }
+
+    .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+      margin-top: 28px;
+      font-size: 11px;
     }
   }
 </style>

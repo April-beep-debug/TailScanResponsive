@@ -8,112 +8,112 @@ import michiImg from '../assets/img/michi.png'
 import simbaImg from '../assets/img/simba.png'
 import nalaImg from '../assets/img/nala.png'
 
-// ---- ICONOS SVG reutilizables ----
+// ---- Reusable SVG icons ----
 const perroIcon = `<path d="M12 21c-3 0-6-2-6-5 0-2 2-3 6-3s6 1 6 3c0 3-3 5-6 5z"/><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="9" cy="4.5" r="1.6"/><circle cx="15" cy="4.5" r="1.6"/>`;
 const gatoIcon  = `<path d="M6 4l2 5h8l2-5-4 3H10L6 4z"/><path d="M8 9c-2 1-3 4-3 6 0 3 3 5 7 5s7-2 7-5c0-2-1-5-3-6"/>`;
 
-// ---- BASE DE DATOS DE MASCOTAS (conecta con index.html vía ?id=) ----
+// ---- Pet data (connected through the ?id= query parameter) ----
 const mascotas = {
   toby: {
-    nombre:"Toby", especie:"perro", sexo:"Macho", edad:"2 años", tamanoPill:"Mediano",
+    nombre:"Toby", especie:"perro", sexo:"Male", edad:"2 years", tamanoPill:"Medium",
     photo: 'toby.png',
-    desc:"Toby es un perro cariñoso, leal y lleno de energía. Le encanta jugar, salir a caminar y recibir mimos. Ideal para una familia activa que pueda darle amor y atención.",
-    refugio:"Refugio Centro", ciudad:"Ciudad de México",
-    rescate:"Rescatado hace 6 meses", vacunado:"Sí", esterilizado:"Sí",
-    tamano:"Mediano (15 - 25 kg)", energia:"Alto", otrosLabel:"Con otros perros", otros:"Muy bien",
-    ninos:"Bien", gatos:"No se ha probado", gatosColor:"amber",
-    personalidad:"Juguetón, leal, cariñoso",
-    historia:"Toby fue rescatado de la calle. A pesar de su pasado, es un perro muy noble y agradecido. Está listo para encontrar su hogar definitivo.",
+    desc:"Toby is a loving, loyal, energetic dog. He loves to play, go for walks, and receive affection. Ideal for an active family that can give him love and attention.",
+    refugio:"Central Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 6 months ago", vacunado:"Yes", esterilizado:"Yes",
+    tamano:"Medium (15 - 25 kg)", energia:"High", otrosLabel:"With other dogs", otros:"Very well",
+    ninos:"Good", gatos:"Not tested", gatosColor:"amber",
+    personalidad:"Playful, loyal, loving",
+    historia:"Toby was rescued from the street. Despite his past, he is a very noble and grateful dog. He is ready to find his forever home.",
     tel:"55 1234 5678", mail:"adopciones@refugiocentro.org", dir:"Av. de los Insurgentes 123, CDMX",
     recomendaciones:[
-      {t:"Hogar con jardín", d:"Ideal para que pueda correr y jugar libremente."},
-      {t:"Ejercicio diario", d:"Necesita actividad física regular para ser feliz."},
-      {t:"Juguetes interactivos", d:"Le encantan los retos y los juegos mentales."}
+      {t:"Home with a yard", d:"Ideal for running and playing freely."},
+      {t:"Daily exercise", d:"Needs regular physical activity to stay happy."},
+      {t:"Interactive toys", d:"Loves challenges and mental games."}
     ]
   },
   luna: {
-    nombre:"Luna", especie:"perro", sexo:"Hembra", edad:"1 año", tamanoPill:"Mediano",
-    desc:"Luna es dulce, curiosa y muy sociable. Disfruta conocer gente nueva y aprender trucos. Se adapta bien a hogares con niños y otras mascotas.",
-    refugio:"Refugio Norte", ciudad:"Ciudad de México",
-    rescate:"Rescatada hace 4 meses", vacunado:"Sí", esterilizado:"Sí",
-    tamano:"Mediano (12 - 20 kg)", energia:"Medio-Alto", otrosLabel:"Con otros perros", otros:"Muy bien",
-    ninos:"Muy bien", gatos:"Bien", gatosColor:"green",
-    personalidad:"Sociable, curiosa, obediente",
-    historia:"Luna llegó al refugio como cachorra tras ser abandonada. Ha crecido rodeada de cuidados y está lista para un hogar que la quiera de verdad.",
+    nombre:"Luna", especie:"perro", sexo:"Female", edad:"1 year", tamanoPill:"Medium",
+    desc:"Luna is sweet, curious, and very sociable. She enjoys meeting new people and learning tricks. She adapts well to homes with children and other pets.",
+    refugio:"North Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 4 months ago", vacunado:"Yes", esterilizado:"Yes",
+    tamano:"Medium (12 - 20 kg)", energia:"Medium-high", otrosLabel:"With other dogs", otros:"Very well",
+    ninos:"Very good", gatos:"Good", gatosColor:"green",
+    personalidad:"Sociable, curious, obedient",
+    historia:"Luna arrived at the shelter as a puppy after being abandoned. She has grown up surrounded by care and is ready for a loving home.",
     tel:"55 2345 6789", mail:"adopciones@refugionorte.org", dir:"Calle Reforma 45, CDMX",
     photo: 'luna.png',
     recomendaciones:[
-      {t:"Familia activa", d:"Le encanta pasear y jugar al aire libre."},
-      {t:"Entrenamiento positivo", d:"Aprende rápido con refuerzo positivo."},
-      {t:"Compañía frecuente", d:"Disfruta mucho estar acompañada."}
+      {t:"Active family", d:"She loves walks and playing outdoors."},
+      {t:"Positive training", d:"She learns quickly with positive reinforcement."},
+      {t:"Frequent company", d:"She really enjoys having company."}
     ]
   },
   bruno: {
-    nombre:"Bruno", especie:"perro", sexo:"Macho", edad:"1 año", tamanoPill:"Pequeño",
-    desc:"Bruno es un perro pequeño pero con mucha personalidad. Es valiente, alerta y muy apegado a su familia una vez que gana confianza.",
-    refugio:"Refugio Sur", ciudad:"Ciudad de México",
-    rescate:"Rescatado hace 3 meses", vacunado:"Sí", esterilizado:"No",
-    tamano:"Pequeño (5 - 10 kg)", energia:"Medio", otrosLabel:"Con otros perros", otros:"Bien",
-    ninos:"Bien, con supervisión", gatos:"No se ha probado", gatosColor:"amber",
-    personalidad:"Valiente, alerta, apegado",
-    historia:"Bruno fue encontrado deambulando solo en la calle. Le tomó tiempo confiar en las personas, pero hoy es un compañero fiel y cariñoso.",
+    nombre:"Bruno", especie:"perro", sexo:"Male", edad:"1 year", tamanoPill:"Small",
+    desc:"Bruno is a small dog with a big personality. He is brave, alert, and very attached to his family once he builds trust.",
+    refugio:"South Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 3 months ago", vacunado:"Yes", esterilizado:"No",
+    tamano:"Small (5 - 10 kg)", energia:"Medium", otrosLabel:"With other dogs", otros:"Good",
+    ninos:"Good, supervised", gatos:"Not tested", gatosColor:"amber",
+    personalidad:"Brave, alert, attached",
+    historia:"Bruno was found wandering alone in the street. It took him time to trust people, but today he is a faithful and loving companion.",
     tel:"55 3456 7890", mail:"adopciones@refugiosur.org", dir:"Av. Universidad 210, CDMX",
     photo: 'bruno.png',
     recomendaciones:[
-      {t:"Hogar tranquilo", d:"Se adapta mejor a ambientes calmados."},
-      {t:"Paciencia inicial", d:"Necesita tiempo para generar confianza."},
-      {t:"Paseos cortos", d:"Disfruta caminatas breves y frecuentes."}
+      {t:"Quiet home", d:"He adapts best to calm environments."},
+      {t:"Initial patience", d:"He needs time to build trust."},
+      {t:"Short walks", d:"He enjoys brief, frequent walks."}
     ]
   },
   michi: {
-    nombre:"Michi", especie:"gato", sexo:"Hembra", edad:"8 meses", tamanoPill:"Juguetona",
-    desc:"Michi es una gatita llena de energía y curiosidad. Le fascina explorar, saltar y jugar con estambres. Perfecta para quien busca compañía activa.",
-    refugio:"Refugio Centro", ciudad:"Ciudad de México",
-    rescate:"Rescatada hace 2 meses", vacunado:"Sí", esterilizado:"No",
-    tamano:"Pequeña (2 - 4 kg)", energia:"Alto", otrosLabel:"Con otros gatos", otros:"Bien",
-    ninos:"Bien", gatos:"Muy bien", gatosColor:"green",
-    personalidad:"Juguetona, curiosa, activa",
-    historia:"Michi llegó al refugio siendo muy pequeña. Ha crecido feliz y saludable, y ahora busca una familia que siga alimentando su curiosidad.",
+    nombre:"Michi", especie:"gato", sexo:"Female", edad:"8 months", tamanoPill:"Playful",
+    desc:"Michi is a kitten full of energy and curiosity. She loves exploring, jumping, and playing with yarn. Perfect for anyone seeking an active companion.",
+    refugio:"Central Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 2 months ago", vacunado:"Yes", esterilizado:"No",
+    tamano:"Small (2 - 4 kg)", energia:"High", otrosLabel:"With other cats", otros:"Good",
+    ninos:"Good", gatos:"Very good", gatosColor:"green",
+    personalidad:"Playful, curious, active",
+    historia:"Michi arrived at the shelter very small. She has grown up happy and healthy, and now seeks a family that will continue nurturing her curiosity.",
     tel:"55 1234 5678", mail:"adopciones@refugiocentro.org", dir:"Av. de los Insurgentes 123, CDMX",
     photo: 'michi.png',
     recomendaciones:[
-      {t:"Espacios para trepar", d:"Le encantan los rascadores y torres altas."},
-      {t:"Juguetes interactivos", d:"Necesita estimulación mental diaria."},
-      {t:"Ventanas seguras", d:"Disfruta observar el exterior con mallas de protección."}
+      {t:"Climbing spaces", d:"She loves scratching posts and tall towers."},
+      {t:"Interactive toys", d:"She needs daily mental stimulation."},
+      {t:"Safe windows", d:"She enjoys watching the outdoors through protective screens."}
     ]
   },
   simba: {
-    nombre:"Simba", especie:"gato", sexo:"Macho", edad:"1 año", tamanoPill:"Tranquilo",
-    desc:"Simba es un gato sereno y observador. Prefiere ambientes tranquilos y disfruta largas siestas al sol. Es ideal para hogares de ritmo calmado.",
-    refugio:"Refugio Norte", ciudad:"Ciudad de México",
-    rescate:"Rescatado hace 5 meses", vacunado:"Sí", esterilizado:"Sí",
-    tamano:"Mediano (4 - 5 kg)", energia:"Bajo", otrosLabel:"Con otros gatos", otros:"Bien",
-    ninos:"Bien, con espacio propio", gatos:"Muy bien", gatosColor:"green",
-    personalidad:"Tranquilo, observador, independiente",
-    historia:"Simba fue entregado al refugio por una familia que ya no podía cuidarlo. Se adaptó rápido y hoy es uno de los gatos más queridos del lugar.",
+    nombre:"Simba", especie:"gato", sexo:"Male", edad:"1 year", tamanoPill:"Calm",
+    desc:"Simba is a calm, observant cat. He prefers quiet environments and enjoys long naps in the sun. Ideal for peaceful homes.",
+    refugio:"North Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 5 months ago", vacunado:"Yes", esterilizado:"Yes",
+    tamano:"Medium (4 - 5 kg)", energia:"Low", otrosLabel:"With other cats", otros:"Good",
+    ninos:"Good, with his own space", gatos:"Very good", gatosColor:"green",
+    personalidad:"Calm, observant, independent",
+    historia:"Simba was brought to the shelter by a family that could no longer care for him. He adapted quickly and is now one of the most beloved cats here.",
     tel:"55 2345 6789", mail:"adopciones@refugionorte.org", dir:"Calle Reforma 45, CDMX",
     photo: 'simba.png',
     recomendaciones:[
-      {t:"Rincones tranquilos", d:"Necesita un lugar propio para descansar."},
-      {t:"Rutina estable", d:"Se siente más seguro con horarios fijos."},
-      {t:"Poco ruido", d:"Prefiere ambientes silenciosos."}
+      {t:"Quiet corners", d:"He needs his own place to rest."},
+      {t:"Stable routine", d:"He feels safer with fixed schedules."},
+      {t:"Low noise", d:"He prefers quiet environments."}
     ]
   },
   nala: {
-    nombre:"Nala", especie:"gato", sexo:"Hembra", edad:"2 años", tamanoPill:"Cariñosa",
-    desc:"Nala es una gata muy cariñosa que busca contacto y mimos constantes. Le encanta acurrucarse y seguir a su humano por toda la casa.",
-    refugio:"Refugio Sur", ciudad:"Ciudad de México",
-    rescate:"Rescatada hace 7 meses", vacunado:"Sí", esterilizado:"Sí",
-    tamano:"Mediana (3.5 - 5 kg)", energia:"Medio", otrosLabel:"Con otros gatos", otros:"Bien",
-    ninos:"Muy bien", gatos:"Bien", gatosColor:"green",
-    personalidad:"Cariñosa, sociable, tranquila",
-    historia:"Nala pasó gran parte de su vida en la calle antes de llegar al refugio. Hoy busca desesperadamente un hogar donde recibir todo el cariño que da.",
+    nombre:"Nala", especie:"gato", sexo:"Female", edad:"2 years", tamanoPill:"Affectionate",
+    desc:"Nala is a very affectionate cat who seeks constant contact and cuddles. She loves curling up and following her person around the house.",
+    refugio:"South Shelter", ciudad:"Mexico City",
+    rescate:"Rescued 7 months ago", vacunado:"Yes", esterilizado:"Yes",
+    tamano:"Medium (3.5 - 5 kg)", energia:"Medium", otrosLabel:"With other cats", otros:"Good",
+    ninos:"Very good", gatos:"Good", gatosColor:"green",
+    personalidad:"Affectionate, sociable, calm",
+    historia:"Nala spent much of her life on the street before arriving at the shelter. Today she is looking for a home where she can receive all the love she gives.",
     tel:"55 3456 7890", mail:"adopciones@refugiosur.org", dir:"Av. Universidad 210, CDMX",
     photo: 'nala.png',
     recomendaciones:[
-      {t:"Compañía constante", d:"No le gusta pasar mucho tiempo sola."},
-      {t:"Camas suaves", d:"Le encanta acurrucarse en mantas cálidas."},
-      {t:"Caricias diarias", d:"Prospera con atención y afecto frecuente."}
+      {t:"Constant company", d:"She does not like spending much time alone."},
+      {t:"Soft beds", d:"She loves curling up in warm blankets."},
+      {t:"Daily affection", d:"She thrives on frequent attention and affection."}
     ]
   }
 };
@@ -161,7 +161,7 @@ function renderForId(idParam){
   setText('crumb-name', m.nombre);
   setText('p-name', m.nombre);
   setHtml('p-pills', `
-    <div class="pill">${m.sexo === 'Macho' ? '♂' : '♀'} ${m.sexo}</div>
+    <div class="pill">${m.sexo === 'Male' ? '♂' : '♀'} ${m.sexo}</div>
     <div class="pill">${m.edad}</div>
     <div class="pill">${m.tamanoPill}</div>`);
   setText('p-desc', m.desc);
@@ -170,10 +170,10 @@ function renderForId(idParam){
   setText('p-rescate', m.rescate);
   setText('p-vacunado', m.vacunado);
   setText('p-esterilizado', m.esterilizado);
-  setText('rec-title', `Recomendaciones para ${m.nombre}`);
-  setText('p-compromiso', `Al adoptar a ${m.nombre}, te comprometes a brindarle amor, cuidados veterinarios y un hogar seguro para toda su vida.`);
+  setText('rec-title', `Recommendations for ${m.nombre}`);
+  setText('p-compromiso', `By adopting ${m.nombre}, you commit to providing love, veterinary care, and a safe home for life.`);
 
-  setText('about-title', `Sobre ${m.nombre}`);
+  setText('about-title', `About ${m.nombre}`);
   setText('s-tamano', m.tamano);
   setText('s-energia', m.energia);
 
@@ -216,13 +216,13 @@ watch(() => route.query.id, (val) => {
 
 <template>
 <main>
-  <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+  <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
   <div class="grid">
     <div>
       <div class="panel">
         <div class="photo">
           <svg id="photo-icon" viewBox="0 0 24 24" fill="none" stroke="#1d4fd7" stroke-width="1.2"></svg>
-          <img id="p-photo" alt="Foto mascota" style="display:none" />
+          <img id="p-photo" alt="Pet photo" style="display:none" />
         </div>
         <h1 class="name" id="p-name">—</h1>
         <div class="pills" id="p-pills"></div>
@@ -239,23 +239,23 @@ watch(() => route.query.id, (val) => {
         <div class="info-row">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6
             6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
-          <div><b>Vacunado</b><span id="p-vacunado"></span></div>
+          <div><b>Vaccinated</b><span id="p-vacunado"></span></div>
         </div>
         <div class="info-row">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/></svg>
-          <div><b>Esterilizado</b><span id="p-esterilizado"></span></div>
+          <div><b>Spayed/neutered</b><span id="p-esterilizado"></span></div>
         </div>
 
         <div class="actions">
-          <button class="btn-primary">♡ Quiero adoptarlo</button>
-          <button class="btn-secondary">⇪ Compartir</button>
+          <button class="btn-primary">♡ I want to adopt</button>
+          <button class="btn-secondary">⇪ Share</button>
         </div>
       </div>
 
       <div class="panel">
         <div class="side-title">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15c-3 0-5 2-5 4h10c0-2-2-4-5-4z"/><circle cx="12" cy="10" r="2.2"/><circle cx="7" cy="7" r="1.6"/><circle cx="17" cy="7" r="1.6"/></svg></div>
-          <h2 id="rec-title">Recomendaciones</h2>
+          <h2 id="rec-title">Recommendations</h2>
         </div>
         <div class="rec-grid" id="rec-grid"></div>
       </div>
@@ -264,11 +264,11 @@ watch(() => route.query.id, (val) => {
         <div class="l">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
           <div>
-            <h4>Adopción responsable</h4>
-            <p id="p-compromiso">Al adoptar, te comprometes a brindarle amor, cuidados veterinarios y un hogar seguro para toda su vida.</p>
+            <h4>Responsible adoption</h4>
+            <p id="p-compromiso">By adopting, you commit to providing love, veterinary care, and a safe home for life.</p>
           </div>
         </div>
-        <button>Conoce más sobre adopción responsable →</button>
+        <button>Learn more about responsible adoption →</button>
       </div>
     </div>
 
@@ -276,20 +276,20 @@ watch(() => route.query.id, (val) => {
       <div class="panel">
         <div class="side-title">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg></div>
-          <h2 id="about-title">Sobre la mascota</h2>
+          <h2 id="about-title">About the pet</h2>
         </div>
-        <div class="table-row"><span class="lbl">Tamaño</span><span class="val" id="s-tamano"></span></div>
-        <div class="table-row"><span class="lbl">Nivel de energía</span><span class="val" id="s-energia"></span></div>
-        <div class="table-row"><span class="lbl">Con otros animales</span><span class="val" id="s-otros"></span></div>
-        <div class="table-row"><span class="lbl">Con niños</span><span class="val" id="s-ninos"></span></div>
-        <div class="table-row"><span class="lbl">Con gatos</span><span class="val" id="s-gatos"></span></div>
-        <div class="table-row"><span class="lbl">Personalidad</span><span class="val" id="s-personalidad"></span></div>
+        <div class="table-row"><span class="lbl">Size</span><span class="val" id="s-tamano"></span></div>
+        <div class="table-row"><span class="lbl">Energy level</span><span class="val" id="s-energia"></span></div>
+        <div class="table-row"><span class="lbl">With other animals</span><span class="val" id="s-otros"></span></div>
+        <div class="table-row"><span class="lbl">With children</span><span class="val" id="s-ninos"></span></div>
+        <div class="table-row"><span class="lbl">With cats</span><span class="val" id="s-gatos"></span></div>
+        <div class="table-row"><span class="lbl">Personality</span><span class="val" id="s-personalidad"></span></div>
       </div>
 
       <div class="panel history">
         <div class="side-title">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-          <h2>Historia</h2>
+          <h2>Story</h2>
         </div>
         <p id="p-historia"></p>
       </div>
@@ -297,7 +297,7 @@ watch(() => route.query.id, (val) => {
       <div class="panel">
         <div class="side-title">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.4 2.1L8.1 9.6a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></div>
-          <h2>Información de contacto</h2>
+          <h2>Contact information</h2>
         </div>
         <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.4 2.1L8.1 9.6a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg><span id="c-tel"></span></div>
         <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg><span id="c-mail"></span></div>

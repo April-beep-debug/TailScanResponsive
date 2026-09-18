@@ -33,7 +33,7 @@ const login = async () => {
     if (error) throw error
     router.push('/home')
   } catch (error) {
-    alert('Error en usuario o contraseña: ' + error.message)
+    alert('Username or password error: ' + error.message)
   }
 }
 </script>
@@ -68,7 +68,7 @@ const login = async () => {
       </div>
 
       <div class="welcome">
-        Bienvenido de nuevo
+        Welcome back
         <svg viewBox="0 0 64 64" fill="currentColor"><ellipse cx="14" cy="20" rx="7" ry="9"/><ellipse cx="32" cy="12" rx="7.5" ry="10"/><ellipse cx="50" cy="20" rx="7" ry="9"/><path d="M32 30c-13 0-20 9-20 17s7 10 20 10 20-3 20-10-7-17-20-17z"/></svg>
       </div>
 
@@ -78,7 +78,7 @@ const login = async () => {
           <input
             v-model="user"
             type="email"
-            placeholder="tucorreo@ejemplo.com"
+            placeholder="you@example.com"
             required
           />
         </div>
@@ -88,18 +88,18 @@ const login = async () => {
           <input
             v-model="password"
             :type="showPassword ? 'text' : 'password'"
-            placeholder="Contraseña"
+            placeholder="Password"
             required
           />
           <svg @click="togglePassword" class="eye-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
 
-        <button type="submit" class="submit-btn">Iniciar Sesión</button>
+        <button type="submit" class="submit-btn">Log In</button>
       </form>
 
       <div class="divider">
         <span class="line"></span>
-        <span>O continúa con</span>
+        <span>Or continue with</span>
         <span class="line"></span>
       </div>
 
@@ -114,9 +114,9 @@ const login = async () => {
       </button>
 
       <div class="footer-links">
-        <a href="#">¿Olvidaste tu contraseña?</a>
+        <a href="#">Forgot your password?</a>
         <span class="sep">|</span>
-        <router-link to="/signin" class="signup">Crear cuenta nueva</router-link>
+        <router-link to="/signin" class="signup">Create a new account</router-link>
       </div>
     </div>
   </div>

@@ -14,56 +14,56 @@
 
     <header class="tc-header">
       <div class="header-top">
-        <button class="icon-btn" @click="$router.back()" aria-label="Volver">←</button>
+        <button class="icon-btn" @click="$router.back()" aria-label="Back">←</button>
       </div>
-      <h1>Apoya una <span>vida</span></h1>
-      <p>Cada aporte ayuda a rescatar, alimentar y cuidar mascotas que necesitan un hogar.</p>
+      <h1>Support a <span>life</span></h1>
+      <p>Every contribution helps rescue, feed, and care for pets in need of a home.</p>
     </header>
 
     <div class="steps">
       <div class="step active">
         <span>1</span>
-        <div><strong>Donación</strong><small>Elige tu aporte</small></div>
+        <div><strong>Donation</strong><small>Choose your contribution</small></div>
       </div>
       <div class="step-line"></div>
       <div :class="['step', { active: paymentProcessed }]">
         <span>2</span>
-        <div><strong>Pago</strong><small>Datos de tarjeta</small></div>
+        <div><strong>Payment</strong><small>Card details</small></div>
       </div>
       <div class="step-line"></div>
       <div :class="['step', { active: donationConfirmed }]">
         <span>3</span>
-        <div><strong>Listo</strong><small>Donación recibida</small></div>
+        <div><strong>Done</strong><small>Donation received</small></div>
       </div>
     </div>
 
     <section class="checkout-grid">
       <aside class="resumen">
         <div class="resumen-header">
-          <div><span class="section-kicker">TAILSCAN IMPACTO</span><h2>Tu donación</h2></div>
+          <div><span class="section-kicker">TAILSCAN IMPACT</span><h2>Your donation</h2></div>
           <span class="cart-icon">❤️</span>
         </div>
 
         <div class="impact-items">
-          <div class="impact-item"><span>🍖</span><div><strong>Alimentación</strong><small>Comida para mascotas rescatadas</small></div></div>
-          <div class="impact-item"><span>🏠</span><div><strong>Refugio</strong><small>Un lugar seguro mientras esperan</small></div></div>
-          <div class="impact-item"><span>❤️</span><div><strong>Atención</strong><small>Cuidados y recuperación</small></div></div>
+          <div class="impact-item"><span>🍖</span><div><strong>Food</strong><small>Food for rescued pets</small></div></div>
+          <div class="impact-item"><span>🏠</span><div><strong>Shelter</strong><small>A safe place while they wait</small></div></div>
+          <div class="impact-item"><span>❤️</span><div><strong>Care</strong><small>Care and recovery</small></div></div>
         </div>
 
         <div class="secure-box">
           <span>🔒</span>
-          <div><strong>Donación segura</strong><small>Tus datos están protegidos.</small></div>
+          <div><strong>Secure donation</strong><small>Your data is protected.</small></div>
         </div>
-        <div class="total-row"><span>Total a donar</span><strong>${{ donationAmount.toFixed(2) }}</strong></div>
+        <div class="total-row"><span>Donation total</span><strong>${{ donationAmount.toFixed(2) }}</strong></div>
       </aside>
 
       <main class="form-area">
         <section v-if="!paymentProcessed" class="checkout-section">
           <div class="section-title">
             <div class="title-icon orange">🐾</div>
-            <div><span class="section-kicker">PASO 1</span><h2>Elige tu aporte</h2></div>
+            <div><span class="section-kicker">STEP 1</span><h2>Choose your contribution</h2></div>
           </div>
-          <p class="section-description">Selecciona un monto y continúa con el pago mediante tarjeta.</p>
+          <p class="section-description">Select an amount and continue to card payment.</p>
 
           <div class="amount-options">
             <button v-for="amount in amounts" :key="amount" :class="{ active: selectedAmount === amount }" @click="selectAmount(amount)">
@@ -72,32 +72,32 @@
           </div>
 
           <label class="field full custom-field">
-            <span>Otro monto</span>
+            <span>Other amount</span>
             <div class="money-input">
               <span>$</span>
-              <input v-model="customAmount" type="number" min="1" placeholder="Ingresa un monto" @input="selectedAmount = null" />
+              <input v-model="customAmount" type="number" min="1" placeholder="Enter an amount" @input="selectedAmount = null" />
             </div>
           </label>
 
           <div class="donation-note">
             <span>💚</span>
-            <div><strong>Tu ayuda cuenta</strong><p>El 100% de tu aporte se destina al bienestar de las mascotas.</p></div>
+            <div><strong>Your help matters</strong><p>100% of your contribution goes to pet welfare.</p></div>
           </div>
-          <button class="primary-btn" @click="continueToPayment">Continuar al pago <span>→</span></button>
+          <button class="primary-btn" @click="continueToPayment">Continue to payment <span>→</span></button>
         </section>
 
         <transition name="fade">
           <section v-if="paymentProcessed && !donationConfirmed" class="checkout-section">
             <div class="section-title">
               <div class="title-icon">💳</div>
-              <div><span class="section-kicker">PASO 2</span><h2>Forma de pago</h2></div>
+                <div><span class="section-kicker">STEP 2</span><h2>Payment method</h2></div>
             </div>
-            <p class="section-description">Ingresa los datos de tu tarjeta para completar tu donación.</p>
+            <p class="section-description">Enter your card details to complete your donation.</p>
 
             <div class="payment-methods">
               <div class="payment-option selected">
                 <span class="radio-custom"></span><span class="payment-icon">💳</span>
-                <span class="payment-content"><strong>Tarjeta</strong><small>Crédito o débito.</small></span>
+                <span class="payment-content"><strong>Card</strong><small>Credit or debit.</small></span>
                 <span class="check">✓</span>
               </div>
             </div>
@@ -107,18 +107,18 @@
                 <div class="fake-card-top"><span>TAILSCAN</span><span>💳</span></div>
                 <div class="fake-card-number">{{ cardNumber || '•••• •••• •••• ••••' }}</div>
                 <div class="fake-card-bottom">
-                  <div><small>TITULAR</small><strong>{{ cardName || 'TU NOMBRE' }}</strong></div>
-                  <div><small>EXPIRA</small><strong>{{ cardExpiry || 'MM/AA' }}</strong></div>
+                  <div><small>CARDHOLDER</small><strong>{{ cardName || 'YOUR NAME' }}</strong></div>
+                  <div><small>EXPIRES</small><strong>{{ cardExpiry || 'MM/YY' }}</strong></div>
                 </div>
               </div>
 
               <div class="form-grid">
-                <label class="field full"><span>Nombre en la tarjeta</span><input v-model="cardName" placeholder="Nombre completo" /></label>
-                <label class="field full"><span>Número de tarjeta</span><input v-model="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" /></label>
-                <label class="field"><span>Fecha de expiración</span><input v-model="cardExpiry" placeholder="MM/AA" maxlength="5" /></label>
+                <label class="field full"><span>Name on card</span><input v-model="cardName" placeholder="Full name" /></label>
+                <label class="field full"><span>Card number</span><input v-model="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" /></label>
+                <label class="field"><span>Expiration date</span><input v-model="cardExpiry" placeholder="MM/YY" maxlength="5" /></label>
                 <label class="field"><span>CVV</span><input v-model="cardCvv" placeholder="123" maxlength="4" type="password" inputmode="numeric" /></label>
               </div>
-              <button class="primary-btn" @click="submitDonation">Confirmar donación <span>✓</span></button>
+              <button class="primary-btn" @click="submitDonation">Confirm donation <span>✓</span></button>
             </div>
           </section>
         </transition>
@@ -126,14 +126,14 @@
         <transition name="fade">
           <section v-if="donationConfirmed" class="confirmation">
             <div class="success-icon">✓</div>
-            <span class="section-kicker">TAILSCAN IMPACTO</span>
-            <h2>¡Gracias por ayudar!</h2>
-            <p>Tu donación de <strong>${{ donationAmount.toFixed(2) }}</strong> contribuirá al bienestar de una mascota.</p>
+            <span class="section-kicker">TAILSCAN IMPACT</span>
+            <h2>Thank you for helping!</h2>
+            <p>Your donation of <strong>${{ donationAmount.toFixed(2) }}</strong> will support a pet's welfare.</p>
             <div class="confirmation-card">
-              <div><span>Estado</span><strong>✓ Donación recibida</strong></div>
+              <div><span>Status</span><strong>✓ Donation received</strong></div>
               <div><span>Total</span><strong>${{ donationAmount.toFixed(2) }}</strong></div>
             </div>
-            <button class="primary-btn" @click="volverInicio">Volver al inicio <span>→</span></button>
+            <button class="primary-btn" @click="volverInicio">Back to home <span>→</span></button>
           </section>
         </transition>
       </main>
@@ -168,7 +168,7 @@ function selectAmount(amount) {
 
 function continueToPayment() {
   if (donationAmount.value <= 0) {
-    alert('Por favor selecciona un monto para donar.')
+    alert('Please select an amount to donate.')
     return
   }
   paymentProcessed.value = true
@@ -176,7 +176,7 @@ function continueToPayment() {
 
 function submitDonation() {
   if (!cardNumber.value || !cardName.value || !cardExpiry.value || !cardCvv.value) {
-    alert('Por favor completa los datos de la tarjeta.')
+    alert('Please complete the card details.')
     return
   }
   donationConfirmed.value = true

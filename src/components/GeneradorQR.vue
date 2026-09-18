@@ -18,6 +18,7 @@ const qrGenerado = ref(false)
 const cargando = ref(false)
 
 const especieIcono = computed(() => (especie.value === 'Gato' ? '🐱' : '🐶'))
+const especieLabel = computed(() => (especie.value === 'Gato' ? 'Cat' : 'Dog'))
 
 const onImageChange = (e) => {
   const file = e.target.files[0]
@@ -38,7 +39,7 @@ const subirImagen = async (file) => {
     .upload(nombreArchivo, file)
 
   if (error) {
-    console.error('Error al subir la foto:', error)
+    console.error('Error uploading the photo:', error)
     return null
   }
   return data
@@ -46,18 +47,18 @@ const subirImagen = async (file) => {
 
 const crearQR = async () => {
   if (!nombreMascota.value || !nombreDueno.value || !telefono.value) {
-    alert('Completa todos los campos')
+    alert('Complete all fields')
     return
   }
 
   if (!archivoFoto.value) {
-    alert('⚠️ Debes subir una foto de la mascota')
+    alert('⚠️ You must upload a pet photo')
     return
   }
 
   const { data: sessionData } = await insforge.auth.getCurrentUser()
   if (!sessionData?.user) {
-    alert('⚠️ Debes iniciar sesión para registrar una mascota')
+    alert('⚠️ You must log in to register a pet')
     router.push('/')
     return
   }
@@ -68,7 +69,7 @@ const crearQR = async () => {
 
   if (!subida) {
     cargando.value = false
-    alert('❌ Error al subir la foto. Probá de nuevo.')
+    alert('❌ Error uploading the photo. Please try again.')
     return
   }
 
@@ -103,7 +104,7 @@ const crearQR = async () => {
   } catch (err) {
     cargando.value = false
     console.error(err)
-    alert('❌ Error al generar el QR o guardar la mascota')
+    alert('❌ Error generating the QR code or saving the pet')
   }
 }
 
@@ -124,7 +125,7 @@ const volver = () => {
 
 <template>
 <div class="qr-page">
-  <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+  <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
   <!-- Decoraciones de fondo -->
   <div class="bg-blob bg-blob-left"></div>
   <div class="bg-blob bg-blob-right"></div>
@@ -146,7 +147,7 @@ const volver = () => {
           <img src="/src/assets/img/mascota.png" alt="TailScan" class="logo-img" />
         </div>
         <h1><span class="tail">Tail</span><span class="scan">Scan</span></h1>
-        <p class="subtitle">Generador de QR para tu mascota</p>
+        <p class="subtitle">QR generator for your pet</p>
         <div class="header-divider">
           <span class="line"></span>
           <span class="paw-icon">🐾</span>
@@ -158,54 +159,54 @@ const volver = () => {
         <div class="card-block">
           <div class="card-title">
             <span class="icon-circle icon-circle-blue"></span>
-            <span>Datos de la mascota</span>
+            <span>Pet details</span>
           </div>
 
           <div class="input-group">
-            <label> Nombre de la Mascota <span class="required">*</span></label>
-            <input v-model="nombreMascota" type="text" placeholder="Ej: Max" required>
+            <label> Pet Name <span class="required">*</span></label>
+            <input v-model="nombreMascota" type="text" placeholder="e.g. Max" required>
           </div>
 
           <div class="input-group">
-            <label> Especie <span class="required">*</span></label>
+            <label> Species <span class="required">*</span></label>
             <div class="especie-toggle">
-              <button type="button" :class="{ active: especie === 'Perro' }" @click="especie = 'Perro'">🐶 Perro</button>
-              <button type="button" :class="{ active: especie === 'Gato' }" @click="especie = 'Gato'">🐱 Gato</button>
+              <button type="button" :class="{ active: especie === 'Perro' }" @click="especie = 'Perro'">🐶 Dog</button>
+              <button type="button" :class="{ active: especie === 'Gato' }" @click="especie = 'Gato'">🐱 Cat</button>
             </div>
           </div>
 
           <div class="input-group">
-            <label> Nombre del Dueño <span class="required">*</span></label>
-            <input v-model="nombreDueno" type="text" placeholder="Ej: Juan Pérez" required>
+            <label> Owner Name <span class="required">*</span></label>
+            <input v-model="nombreDueno" type="text" placeholder="e.g. John Smith" required>
           </div>
 
           <div class="input-group">
-            <label> Teléfono de Contacto <span class="required">*</span></label>
-            <input v-model="telefono" type="text" placeholder="Ej: 1234-5678" required>
+            <label> Contact Phone <span class="required">*</span></label>
+            <input v-model="telefono" type="text" placeholder="e.g. 1234-5678" required>
           </div>
 
           <div class="input-group">
-            <label> Foto de la Mascota <span class="required">*</span></label>
+            <label> Pet Photo <span class="required">*</span></label>
             <label class="file-upload">
               <input type="file" accept="image/*" @change="onImageChange" required>
               <span class="icon-circle icon-circle-orange small"></span>
-              <span>Elegir archivo</span>
+              <span>Choose file</span>
             </label>
-            <small class="hint">La imagen se guarda en el almacenamiento de TailScan</small>
+            <small class="hint">The image is saved in TailScan storage</small>
           </div>
         </div>
 
         <button type="button" @click="crearQR" class="btn-generate" :disabled="cargando">
           <span v-if="cargando" class="spinner"></span>
-          {{ cargando ? 'Guardando mascota...' : '🐾 Generar Código QR' }}
+          {{ cargando ? 'Saving pet...' : '🐾 Generate QR Code' }}
         </button>
 
         <button v-if="qrGenerado" type="button" @click="descargarQR" class="btn-download">
-          Descargar QR
+          Download QR
         </button>
 
         <button type="button" @click="volver" class="btn-volver">
-          ⬅ Volver al inicio
+          ⬅ Back to home
         </button>
       </form>
     </div>
@@ -214,32 +215,32 @@ const volver = () => {
     <div class="pet-card">
       <div class="pet-card-header">
         <span class="icon-circle icon-circle-orange small"></span>
-        <span>Vista previa de la tarjeta</span>
+        <span>Card preview</span>
       </div>
 
       <div class="pet-card-body">
         <div class="pet-photo">
-          <img v-if="preview" :src="preview" alt="Foto de la mascota" />
+          <img v-if="preview" :src="preview" alt="Pet photo" />
           <span v-else class="pet-photo-placeholder">{{ especieIcono }}</span>
         </div>
 
-        <h2 class="pet-name">{{ nombreMascota || 'Nombre de la mascota' }}</h2>
-        <span class="pet-especie-pill">{{ especieIcono }} {{ especie }}</span>
+        <h2 class="pet-name">{{ nombreMascota || 'Pet name' }}</h2>
+        <span class="pet-especie-pill">{{ especieIcono }} {{ especieLabel }}</span>
 
         <div class="pet-info">
           <div class="pet-info-row">
-            <span class="pet-info-label">👤 Dueño</span>
+            <span class="pet-info-label">👤 Owner</span>
             <span class="pet-info-value">{{ nombreDueno || '—' }}</span>
           </div>
           <div class="pet-info-row">
-            <span class="pet-info-label">📞 Teléfono</span>
+            <span class="pet-info-label">📞 Phone</span>
             <span class="pet-info-value">{{ telefono || '—' }}</span>
           </div>
         </div>
 
         <div class="qr-result" :class="{ 'has-qr': qrGenerado }">
           <canvas ref="qrCanvas"></canvas>
-          <p v-if="!qrGenerado" class="qr-placeholder">Tu código QR aparecerá aquí</p>
+          <p v-if="!qrGenerado" class="qr-placeholder">Your QR code will appear here</p>
         </div>
       </div>
     </div>

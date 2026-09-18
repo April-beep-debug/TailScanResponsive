@@ -8,10 +8,10 @@ import michiImg from '../assets/img/michi.png'
 
 const productos = [
   { id: 1, marca: 'Taste of the Wild', nombre: 'Pacific Stream', precio: '32.99', rating: 4, resenas: 124, img: mascotaImg },
-  { id: 2, marca: 'KONG Classic', nombre: 'Rojo - M', precio: '16.99', rating: 5, resenas: 88, img: cachorroImg },
+  { id: 2, marca: 'KONG Classic', nombre: 'Red - M', precio: '16.99', rating: 5, resenas: 88, img: cachorroImg },
   { id: 3, marca: 'Greenies', nombre: 'Original', precio: '23.50', rating: 4, resenas: 76, img: gatoImg },
-  { id: 4, marca: 'Cama Suave', nombre: 'Premium Gris', precio: '39.99', rating: 5, resenas: 58, img: goldenImg },
-  { id: 5, marca: 'Collar Reflectivo', nombre: 'Morado - L', precio: '12.99', rating: 4, resenas: 87, img: michiImg },
+  { id: 4, marca: 'Soft Bed', nombre: 'Premium Gray', precio: '39.99', rating: 5, resenas: 58, img: goldenImg },
+  { id: 5, marca: 'Reflective Collar', nombre: 'Purple - L', precio: '12.99', rating: 4, resenas: 87, img: michiImg },
 ]
 
 const categoriaActiva = ref('Productos')
@@ -19,7 +19,7 @@ const categoriaActiva = ref('Productos')
 
 <template>
   <div class="page">
-    <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+    <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
     <!-- Blobs decorativos -->
     <div class="blob blob-orange"></div>
     <div class="dots-deco">
@@ -32,28 +32,28 @@ const categoriaActiva = ref('Productos')
       <aside class="sidebar">
         <div class="sidebar-inner">
           <div class="logo-row">
-            <img class="logo-badge" :src="mascotaImg" alt="Mascota" />
+            <img class="logo-badge" :src="mascotaImg" alt="Pet" />
             <div>
               <h1 class="logo-title">TailScan</h1>
-              <p class="logo-sub">Para perros y gatos</p>
+              <p class="logo-sub">For dogs and cats</p>
             </div>
           </div>
 
           <nav class="menu">
             <a href="#" class="menu-item" :class="{ active: categoriaActiva === 'Productos' }" @click="categoriaActiva = 'Productos'">
-              <i class="fa-solid fa-bag-shopping"></i> Productos
+              <i class="fa-solid fa-bag-shopping"></i> Products
             </a>
             <a href="#" class="menu-item" @click="categoriaActiva = 'Perros'">
-              <i class="fa-solid fa-dog"></i> Perros
+              <i class="fa-solid fa-dog"></i> Dogs
             </a>
             <a href="#" class="menu-item" @click="categoriaActiva = 'Gatos'">
-              <i class="fa-solid fa-cat"></i> Gatos
+              <i class="fa-solid fa-cat"></i> Cats
             </a>
           </nav>
 
           <div class="shipping-card">
-            <p class="shipping-title">🚚 Envío gratis</p>
-            <p class="shipping-sub">en compras desde $25</p>
+            <p class="shipping-title">🚚 Free shipping</p>
+            <p class="shipping-sub">on orders over $25</p>
           </div>
         </div>
       </aside>
@@ -63,19 +63,19 @@ const categoriaActiva = ref('Productos')
         <!-- Hero -->
         <section class="hero">
           <h2 class="hero-title">
-            Todo lo que necesita <span class="accent">tu mejor amigo</span> 🐾
+            Everything your <span class="accent">best friend</span> needs 🐾
           </h2>
-          <p class="hero-sub">Alimento, juguetes y cuidado, elegidos con cariño.</p>
+          <p class="hero-sub">Food, toys, and care, chosen with love.</p>
         </section>
 
         <!-- Banners -->
         <div class="banners">
           <div class="banner banner-dog">
             <div class="banner-text">
-              <h3>Nutrición<br>de calidad</h3>
-              <p>Para una vida sana y feliz</p>
-              <button class="btn btn-blue" @click="() => alert('Redirigiendo a productos para perros...')">
-                Ver productos
+              <h3>Quality<br>nutrition</h3>
+              <p>For a healthy, happy life</p>
+              <button class="btn btn-blue" @click="() => alert('Redirecting to dog products...')">
+                View products
               </button>
             </div>
             <div class="banner-img">
@@ -85,14 +85,14 @@ const categoriaActiva = ref('Productos')
 
           <div class="banner banner-cat">
             <div class="banner-text">
-              <h3>Bienestar para<br>tu gato</h3>
-              <p>Cuidado y cariño en cada detalle</p>
-              <button class="btn btn-orange" @click="() => alert('Redirigiendo a productos para gatos...')">
-                Ver productos
+              <h3>Wellness for<br>your cat</h3>
+              <p>Care and love in every detail</p>
+              <button class="btn btn-orange" @click="() => alert('Redirecting to cat products...')">
+                View products
               </button>
             </div>
             <div class="banner-img">
-              <img :src="gatoImg" alt="Gato">
+                <img :src="gatoImg" alt="Cat">
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const categoriaActiva = ref('Productos')
         <!-- Destacados -->
         <section class="destacados">
           <div class="section-head">
-            <h3>Productos destacados</h3>
+            <h3>Featured products</h3>
           </div>
 
           <div class="grid-productos">
@@ -126,29 +126,29 @@ const categoriaActiva = ref('Productos')
           <div class="footer-item">
             <i class="fa-solid fa-truck"></i>
             <div>
-              <p class="footer-title">Envíos rápidos</p>
-              <p class="footer-sub">A todo el país</p>
+              <p class="footer-title">Fast shipping</p>
+              <p class="footer-sub">Nationwide delivery</p>
             </div>
           </div>
           <div class="footer-item">
             <i class="fa-solid fa-shield"></i>
             <div>
-              <p class="footer-title">Pagos seguros</p>
-              <p class="footer-sub">Compra con confianza</p>
+              <p class="footer-title">Secure payments</p>
+              <p class="footer-sub">Shop with confidence</p>
             </div>
           </div>
           <div class="footer-item">
             <i class="fa-solid fa-headset"></i>
             <div>
-              <p class="footer-title">Atención 24/7</p>
-              <p class="footer-sub">Siempre para ayudarte</p>
+              <p class="footer-title">24/7 support</p>
+              <p class="footer-sub">Always here to help</p>
             </div>
           </div>
           <div class="footer-item">
             <i class="fa-solid fa-rotate"></i>
             <div>
-              <p class="footer-title">Devoluciones fáciles</p>
-              <p class="footer-sub">Sin complicaciones</p>
+              <p class="footer-title">Easy returns</p>
+              <p class="footer-sub">No complications</p>
             </div>
           </div>
         </footer>

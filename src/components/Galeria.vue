@@ -1,12 +1,12 @@
 <template>
 <div>
-<button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+<button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
 <section class="hero galeria-hero">
   <div class="blob orange"></div>
   <div class="blob blue"></div>
-  <h1>Galería de adopción</h1>
-  <p>Encuentra a tu compañero ideal 🐾</p>
-  <p class="sub">Cada mascota merece un hogar lleno de amor.</p>
+  <h1>Adoption gallery</h1>
+  <p>Find your ideal companion 🐾</p>
+  <p class="sub">Every pet deserves a loving home.</p>
 </section>
 
 <main>
@@ -19,16 +19,16 @@
           <div class="icon-circle blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15c-3 0-5 2-5 4h10c0-2-2-4-5-4z"/><circle cx="12" cy="10" r="2.2"/><circle cx="7" cy="7" r="1.6"/><circle cx="17" cy="7" r="1.6"/></svg>
           </div>
-          <div><h2>Perros</h2><p>Cariñosos, leales y listos para llenar tu vida de alegría.</p></div>
+          <div><h2>Dogs</h2><p>Loving, loyal, and ready to fill your life with joy.</p></div>
         </div>
-        <div class="badge blue">🐾 32 disponibles</div>
+        <div class="badge blue">🐾 32 available</div>
       </div>
 
       <div class="filters">
-        <select><option>Tamaño</option></select>
-        <select><option>Edad</option></select>
-        <select><option>Sexo</option></select>
-        <div class="filter-btn blue">▽ Filtrar</div>
+        <select><option>Size</option></select>
+        <select><option>Age</option></select>
+        <select><option>Sex</option></select>
+        <div class="filter-btn blue">▽ Filter</div>
       </div>
 
       <div class="cards">
@@ -37,10 +37,10 @@
             <img src="../assets/img/toby.png" alt="Toby" />
           </div>
           <h3>Toby</h3>
-          <div class="meta">Macho • 2 años</div>
-          <span class="tag blue">Mediano</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Centro</div>
-          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'toby' } }">♡ Ver perfil</router-link>
+          <div class="meta">Male - 2 years</div>
+          <span class="tag blue">Medium</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Central Shelter</div>
+          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'toby' } }">♡ View profile</router-link>
         </div>
 
         <div class="card">
@@ -48,10 +48,10 @@
             <img src="../assets/img/luna.png" alt="Luna" />
           </div>
           <h3>Luna</h3>
-          <div class="meta">Hembra • 1 año</div>
-          <span class="tag blue">Mediano</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Norte</div>
-          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'luna' } }">♡ Ver perfil</router-link>
+          <div class="meta">Female - 1 year</div>
+          <span class="tag blue">Medium</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>North Shelter</div>
+          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'luna' } }">♡ View profile</router-link>
         </div>
 
         <div class="card">
@@ -59,14 +59,14 @@
             <img src="../assets/img/bruno.png" alt="Bruno" />
           </div>
           <h3>Bruno</h3>
-          <div class="meta">Macho • 1 año</div>
-          <span class="tag blue">Pequeño</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Sur</div>
-          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'bruno' } }">♡ Ver perfil</router-link>
+          <div class="meta">Male - 1 year</div>
+          <span class="tag blue">Small</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>South Shelter</div>
+          <router-link class="btn-outline blue" :to="{ path: '/mascota', query: { id: 'bruno' } }">♡ View profile</router-link>
         </div>
       </div>
 
-      <button class="view-all blue">Ver todos los perros →</button>
+      <button class="view-all blue">View all dogs →</button>
     </div>
 
     <!-- GATOS -->
@@ -76,16 +76,16 @@
           <div class="icon-circle orange">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l2 5h8l2-5-4 3H10L6 4z"/><path d="M8 9c-2 1-3 4-3 6 0 3 3 5 7 5s7-2 7-5c0-2-1-5-3-6"/></svg>
           </div>
-          <div><h2>Gatos</h2><p>Independientes, tiernos y con personalidades únicas.</p></div>
+          <div><h2>Cats</h2><p>Independent, sweet, and full of unique personalities.</p></div>
         </div>
-        <div class="badge orange">🐾 28 disponibles</div>
+        <div class="badge orange">🐾 28 available</div>
       </div>
 
       <div class="filters">
-        <select><option>Edad</option></select>
-        <select><option>Sexo</option></select>
-        <select><option>Personalidad</option></select>
-        <div class="filter-btn orange">▽ Filtrar</div>
+        <select><option>Age</option></select>
+        <select><option>Sex</option></select>
+        <select><option>Personality</option></select>
+        <div class="filter-btn orange">▽ Filter</div>
       </div>
 
       <div class="cards">
@@ -94,10 +94,10 @@
             <img src="../assets/img/michi.png" alt="Michi" />
           </div>
           <h3>Michi</h3>
-          <div class="meta">Hembra • 8 meses</div>
-          <span class="tag orange">Juguetona</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Centro</div>
-          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'michi' } }">♡ Ver perfil</router-link>
+          <div class="meta">Female - 8 months</div>
+          <span class="tag orange">Playful</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Central Shelter</div>
+          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'michi' } }">♡ View profile</router-link>
         </div>
 
         <div class="card">
@@ -105,10 +105,10 @@
             <img src="../assets/img/simba.png" alt="Simba" />
           </div>
           <h3>Simba</h3>
-          <div class="meta">Macho • 1 año</div>
-          <span class="tag orange">Tranquilo</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Norte</div>
-          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'simba' } }">♡ Ver perfil</router-link>
+          <div class="meta">Male - 1 year</div>
+          <span class="tag orange">Calm</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>North Shelter</div>
+          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'simba' } }">♡ View profile</router-link>
         </div>
 
         <div class="card">
@@ -116,33 +116,33 @@
             <img src="../assets/img/nala.png" alt="Nala" />
           </div>
           <h3>Nala</h3>
-          <div class="meta">Hembra • 2 años</div>
-          <span class="tag orange">Cariñosa</span>
-          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Refugio Sur</div>
-          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'nala' } }">♡ Ver perfil</router-link>
+          <div class="meta">Female - 2 years</div>
+          <span class="tag orange">Affectionate</span>
+          <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>South Shelter</div>
+          <router-link class="btn-outline orange" :to="{ path: '/mascota', query: { id: 'nala' } }">♡ View profile</router-link>
         </div>
       </div>
 
-      <button class="view-all orange">Ver todos los gatos →</button>
+      <button class="view-all orange">View all cats →</button>
     </div>
   </div>
 
   <div class="features">
     <div class="feature">
       <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2.4 0 4 1.5 6 4 2-2.5 3.6-4 6-4 4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
-      <div><h4>Adopta</h4><p>Cambia dos vidas</p></div>
+      <div><h4>Adopt</h4><p>Change two lives</p></div>
     </div>
     <div class="feature">
       <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <div><h4>Responsable</h4><p>Compromiso para siempre</p></div>
+      <div><h4>Responsible</h4><p>A lifelong commitment</p></div>
     </div>
     <div class="feature">
       <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15c-3 0-5 2-5 4h10c0-2-2-4-5-4z"/><circle cx="12" cy="10" r="2.2"/><circle cx="7" cy="7" r="1.6"/><circle cx="17" cy="7" r="1.6"/></svg></div>
-      <div><h4>Apoyo</h4><p>Te acompañamos</p></div>
+      <div><h4>Support</h4><p>We are with you</p></div>
     </div>
     <div class="feature">
       <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
-      <div><h4>Hogar</h4><p>Donde comienza el amor</p></div>
+      <div><h4>Home</h4><p>Where love begins</p></div>
     </div>
   </div>
 </main>

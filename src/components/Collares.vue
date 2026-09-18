@@ -33,27 +33,27 @@
     <!-- Header -->
     <header class="tc-header">
       <div class="header-top">
-        <button class="icon-btn grid-btn" aria-label="Menú">
+        <button class="icon-btn grid-btn" aria-label="Menu">
           <span class="dot" v-for="n in 6" :key="n"></span>
         </button>
 
         <button
           class="icon-btn back-btn"
           @click="$router.back()"
-          aria-label="Volver"
+          aria-label="Back"
         >
           ←
         </button>
       </div>
 
       <h1 class="title">
-        Collares <span class="accent">personalizados</span>
+        <span class="accent">Custom</span> collars
       </h1>
 
       <div class="benefits">
-        <span>✓ QR integrado</span>
-        <span>✓ Diseños únicos</span>
-        <span>✓ Pensados para tu mascota</span>
+        <span>✓ Built-in QR</span>
+        <span>✓ Unique designs</span>
+        <span>✓ Made for your pet</span>
       </div>
 
       <!-- Filtros -->
@@ -64,7 +64,7 @@
           :class="['filtro-btn', { activo: categoriaActiva === cat }]"
           @click="categoriaActiva = cat"
         >
-          {{ cat }}
+          {{ categoriaLabel(cat) }}
         </button>
       </div>
     </header>
@@ -73,13 +73,13 @@
     <main class="productos-container">
       <div class="section-heading">
         <div>
-          <span class="section-kicker">ENCUENTRA EL IDEAL</span>
-          <h2>El collar perfecto para <span>tu compañero</span></h2>
+          <span class="section-kicker">FIND THE RIGHT ONE</span>
+          <h2>The perfect collar for <span>your companion</span></h2>
         </div>
 
         <div class="products-count">
           {{ collaresFiltrados.length }}
-          <small>productos</small>
+          <small>products</small>
         </div>
       </div>
 
@@ -103,13 +103,13 @@
             </span>
 
             <span class="badge-qr">
-              📱 QR incluido
+              📱 QR included
             </span>
           </div>
 
           <div class="producto-info">
             <div class="product-category">
-              {{ collar.categoria }}
+              {{ categoriaLabel(collar.categoria) }}
             </div>
 
             <h2 class="producto-nombre">
@@ -134,7 +134,7 @@
                     class="color-dot"
                     :style="{ background: color }"
                   ></span>
-                  <small>Colores</small>
+                  <small>Colors</small>
                 </div>
 
                 <div class="producto-precio-row">
@@ -158,7 +158,7 @@
             @click="agregarAlCarrito(collar)"
           >
             <span>🛒</span>
-            Agregar al carrito
+            Add to cart
             <strong>→</strong>
           </button>
         </article>
@@ -171,8 +171,8 @@
         <div class="cart-icon">🛒</div>
 
         <div class="carrito-detalle">
-          <strong>{{ carrito.length }} collar(es)</strong>
-          <span>en tu carrito</span>
+          <strong>{{ carrito.length }} collar(s)</strong>
+          <span>in your cart</span>
         </div>
 
         <div class="carrito-total">
@@ -183,11 +183,11 @@
           class="ver-carrito-btn"
           @click="mostrarCarrito = !mostrarCarrito"
         >
-          {{ mostrarCarrito ? 'Ocultar' : 'Ver carrito' }}
+          {{ mostrarCarrito ? 'Hide' : 'View cart' }}
         </button>
 
         <button class="pagar-btn" @click="irAPagar">
-          Pagar →
+          Checkout →
         </button>
       </div>
     </transition>
@@ -198,7 +198,7 @@
         <div class="cart-panel-header">
           <div>
             <span class="section-kicker">TAILSCAN SHOP</span>
-            <h3>Tu carrito 🐾</h3>
+            <h3>Your cart 🐾</h3>
           </div>
 
           <button
@@ -229,7 +229,7 @@
             <button
               class="eliminar-btn"
               @click="eliminarDelCarrito(index)"
-              title="Eliminar"
+              title="Remove"
             >
               ×
             </button>
@@ -243,7 +243,7 @@
           </div>
 
           <button class="panel-pay-btn" @click="irAPagar">
-            Continuar al pago →
+            Continue to checkout →
           </button>
         </div>
       </div>
@@ -273,15 +273,23 @@ const categoriaActiva = ref('Todos')
 const carrito = ref([])
 const mostrarCarrito = ref(false)
 
+const categoriaLabel = (categoria) => ({
+  Todos: 'All',
+  Clásicos: 'Classic',
+  Reflectivos: 'Reflective',
+  Bordados: 'Embroidered',
+  Premium: 'Premium'
+}[categoria] || categoria)
+
 const router = useRouter()
 
 const collares = ref([
   {
     id: 1,
-    nombre: 'Collar Clásico Cuero',
+    nombre: 'Classic Leather Collar',
     descripcion:
-      'Cuero genuino con placa QR grabada, resistente al agua.',
-    material: 'Cuero',
+      'Genuine leather with an engraved QR tag, water resistant.',
+    material: 'Leather',
     categoria: 'Clásicos',
     colores: ['#5b3a29', '#1e3a8a', '#1e293b'],
     precio: 14.99,
@@ -291,9 +299,9 @@ const collares = ref([
   },
   {
     id: 2,
-    nombre: 'Collar Reflectivo Nocturno',
+    nombre: 'Night Reflective Collar',
     descripcion:
-      'Franja reflectiva para paseos nocturnos, con QR resistente a rayones.',
+      'Reflective strip for night walks, with a scratch-resistant QR tag.',
     material: 'Nylon',
     categoria: 'Reflectivos',
     colores: ['#0f172a', '#f97316'],
@@ -302,10 +310,10 @@ const collares = ref([
   },
   {
     id: 3,
-    nombre: 'Collar Bordado Nombre',
+    nombre: 'Embroidered Name Collar',
     descripcion:
-      'Bordado personalizado con el nombre de tu mascota y QR TailScan.',
-    material: 'Algodón',
+      'Custom embroidery with your pet\'s name and a TailScan QR tag.',
+    material: 'Cotton',
     categoria: 'Bordados',
     colores: ['#f472b6', '#60a5fa', '#facc15'],
     precio: 16.0,
@@ -314,10 +322,10 @@ const collares = ref([
   },
   {
     id: 4,
-    nombre: 'Collar Premium Acero',
+    nombre: 'Premium Steel Collar',
     descripcion:
-      'Hebilla de acero inoxidable, placa QR metálica grabada con láser.',
-    material: 'Acero + Nylon',
+      'Stainless steel buckle with a laser-engraved metal QR tag.',
+    material: 'Steel + Nylon',
     categoria: 'Premium',
     colores: ['#334155', '#eab308'],
     precio: 24.99,
@@ -325,10 +333,10 @@ const collares = ref([
   },
   {
     id: 5,
-    nombre: 'Collar Clásico Trenzado',
+    nombre: 'Classic Braided Collar',
     descripcion:
-      'Diseño trenzado resistente, ideal para razas grandes.',
-    material: 'Nylon trenzado',
+      'Durable braided design, ideal for large breeds.',
+    material: 'Braided nylon',
     categoria: 'Clásicos',
     colores: ['#1e3a8a', '#16a34a', '#0f172a'],
     precio: 13.5,
@@ -336,10 +344,10 @@ const collares = ref([
   },
   {
     id: 6,
-    nombre: 'Collar Reflectivo Ajustable',
+    nombre: 'Adjustable Reflective Collar',
     descripcion:
-      'Ajuste rápido, materiales impermeables y QR resistente al agua.',
-    material: 'Poliéster',
+      'Quick adjustment, waterproof materials, and a water-resistant QR tag.',
+    material: 'Polyester',
     categoria: 'Reflectivos',
     colores: ['#0ea5e9', '#f97316', '#1e293b'],
     precio: 11.99,

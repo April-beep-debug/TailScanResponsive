@@ -1,0 +1,147 @@
+html {
+	overflow-x: hidden;
+}
+
+img,
+svg,
+canvas,
+video {
+	max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+@media (max-width: 768px) {
+	.page,
+	.consejos-container,
+	.tienda-collares,
+	.pagos-page,
+	.donaciones-page,
+	.articulos-page,
+	.veterinarios-page {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.page-back-button {
+		top: 12px;
+		left: 12px;
+		width: 38px;
+		height: 38px;
+		font-size: 18px;
+	}
+
+	.columns,
+	.checkout-grid,
+	.payment-methods,
+	.form-grid {
+		grid-template-columns: 1fr !important;
+	}
+
+	.field.full {
+		grid-column: auto !important;
+	}
+
+	.panel,
+	.checkout-section {
+		padding: 18px !important;
+	}
+
+	main {
+		padding-right: 16px !important;
+		padding-left: 16px !important;
+	}
+
+	.panel-head,
+	.section-heading,
+	.tc-header .benefits,
+	.footer-bottom {
+		flex-wrap: wrap;
+	}
+
+	.panel-head,
+	.section-heading {
+		gap: 14px;
+	}
+
+	.panel-title {
+		min-width: 0;
+	}
+
+	.panel-title p,
+	.producto-desc,
+	.section-description {
+		overflow-wrap: anywhere;
+	}
+
+	.filters,
+	.benefits,
+	.location-btns,
+	.photo-actions {
+		flex-wrap: wrap;
+	}
+
+	.filters select,
+	.filter-btn,
+	.filtro-btn {
+		flex: 1 1 120px;
+		min-width: 0;
+	}
+
+	.drawer {
+		max-width: 100% !important;
+	}
+
+	.map-shell {
+		height: min(60vh, 420px);
+	}
+}
+
+@media (max-width: 480px) {
+	.hero-wrap {
+		padding: 34px 16px 42px !important;
+		border-radius: 20px !important;
+	}
+
+	.hero-wrap h1,
+	.hero h1 {
+		font-size: clamp(26px, 8vw, 34px) !important;
+	}
+
+	.cards,
+	.productos-grid,
+	.cards-wrap {
+		grid-template-columns: 1fr !important;
+	}
+
+	.hero-wrap .form-row {
+		grid-template-columns: 1fr !important;
+	}
+
+	.steps {
+		align-items: stretch;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.step-line {
+		width: 2px;
+		height: 18px;
+		margin: 0 16px;
+	}
+
+	.fake-card {
+		min-height: 165px;
+		padding: 16px;
+	}
+
+	.fake-card-number {
+		margin-top: 25px;
+		font-size: 16px;
+	}
+}

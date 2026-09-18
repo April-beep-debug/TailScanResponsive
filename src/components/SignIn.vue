@@ -16,7 +16,7 @@ const togglePassword = () => {
 const signUp = async () => {
   try {
     if (password.value !== confirmPassword.value) {
-      throw new Error('Las contraseñas no coinciden')
+      throw new Error('Passwords do not match')
     }
     const { data, error } = await insforge.auth.signUp({
       email: user.value,
@@ -25,7 +25,7 @@ const signUp = async () => {
     if (error) throw error
     router.push('/home')
   } catch (error) {
-    alert('Error al crear la cuenta: ' + error.message)
+    alert('Error creating account: ' + error.message)
   }
 }
 
@@ -61,7 +61,7 @@ const signUp = async () => {
       </div>
 
       <div class="welcome">
-        Crea tu cuenta
+        Create your account
         <svg viewBox="0 0 64 64" fill="currentColor"><ellipse cx="14" cy="20" rx="7" ry="9"/><ellipse cx="32" cy="12" rx="7.5" ry="10"/><ellipse cx="50" cy="20" rx="7" ry="9"/><path d="M32 30c-13 0-20 9-20 17s7 10 20 10 20-3 20-10-7-17-20-17z"/></svg>
       </div>
 
@@ -71,7 +71,7 @@ const signUp = async () => {
           <input
             v-model="user"
             type="email"
-            placeholder="tucorreo@ejemplo.com"
+            placeholder="you@example.com"
             required
           />
         </div>
@@ -81,7 +81,7 @@ const signUp = async () => {
           <input
             v-model="password"
             :type="showPassword ? 'text' : 'password'"
-            placeholder="Contraseña"
+            placeholder="Password"
             required
           />
           <svg @click="togglePassword" class="eye-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -92,19 +92,19 @@ const signUp = async () => {
           <input
             v-model="confirmPassword"
             :type="showPassword ? 'text' : 'password'"
-            placeholder="Repite tu contraseña"
+            placeholder="Repeat your password"
             required
           />
           <svg @click="togglePassword" class="eye-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
 
-          <button type="submit" class="submit-btn">Crear cuenta</button>
+          <button type="submit" class="submit-btn">Create account</button>
       </form>
 
       <div class="footer-links">
-        <span>¿Ya tienes cuenta?</span>
+        <span>Already have an account?</span>
         <span class="sep">|</span>
-        <router-link to="/" class="signup">Iniciar sesión</router-link>
+        <router-link to="/" class="signup">Log in</router-link>
       </div>
     </div>
   </div>

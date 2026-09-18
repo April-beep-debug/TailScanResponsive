@@ -17,6 +17,7 @@ const setCanvasRef = (id) => (el) => {
 }
 
 const especieIcono = (especie) => (especie === 'Gato' ? '🐱' : '🐶')
+const especieLabel = (especie) => (especie === 'Gato' ? 'Cat' : 'Dog')
 
 const dibujarQRs = async () => {
   await nextTick()
@@ -64,7 +65,7 @@ onMounted(async () => {
     .order('created_at', { ascending: false })
 
   if (dbError) {
-    error.value = 'No se pudieron cargar tus mascotas. Intenta de nuevo más tarde.'
+    error.value = 'Your pets could not be loaded. Please try again later.'
     cargando.value = false
     return
   }
@@ -77,7 +78,7 @@ onMounted(async () => {
 
 <template>
 <div class="page">
-  <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+  <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
   <div class="bg-blob bg-blob-left"></div>
   <div class="bg-blob bg-blob-right"></div>
 
@@ -94,13 +95,13 @@ onMounted(async () => {
 
   <main class="content">
     <div class="title-block">
-      <h1>Mis Mascotas</h1>
-      <p>Aquí están las mascotas que has registrado, junto a su código QR.</p>
+      <h1>My Pets</h1>
+      <p>Here are the pets you have registered, along with their QR codes.</p>
     </div>
 
     <div v-if="cargando" class="state-block">
       <span class="spinner"></span>
-      <p>Cargando tus mascotas...</p>
+      <p>Loading your pets...</p>
     </div>
 
     <div v-else-if="error" class="state-block error">
@@ -109,9 +110,9 @@ onMounted(async () => {
 
     <div v-else-if="mascotas.length === 0" class="state-block empty">
       <span class="empty-icon">🐾</span>
-      <h2>Todavía no registras mascotas</h2>
-      <p>Registra a tu perro o gato y genera su código QR de identificación.</p>
-      <button class="btn-primary" @click="irARegistrar">🐾 Registrar Mascota</button>
+      <h2>You have not registered any pets yet</h2>
+      <p>Register your dog or cat and generate its identification QR code.</p>
+      <button class="btn-primary" @click="irARegistrar">🐾 Register a Pet</button>
     </div>
 
     <div v-else class="grid">
@@ -122,15 +123,15 @@ onMounted(async () => {
         </div>
 
         <h2 class="pet-name">{{ m.nombre_mascota }}</h2>
-        <span class="pet-especie-pill">{{ especieIcono(m.especie) }} {{ m.especie }}</span>
+        <span class="pet-especie-pill">{{ especieIcono(m.especie) }} {{ especieLabel(m.especie) }}</span>
 
         <div class="pet-info">
           <div class="pet-info-row">
-            <span class="pet-info-label">👤 Dueño</span>
+            <span class="pet-info-label">👤 Owner</span>
             <span class="pet-info-value">{{ m.nombre_dueno }}</span>
           </div>
           <div class="pet-info-row">
-            <span class="pet-info-label">📞 Teléfono</span>
+            <span class="pet-info-label">📞 Phone</span>
             <span class="pet-info-value">{{ m.telefono }}</span>
           </div>
         </div>
@@ -139,7 +140,7 @@ onMounted(async () => {
           <canvas :ref="setCanvasRef(m.id)"></canvas>
         </div>
 
-        <button class="btn-download" @click="descargarQR(m)">Descargar QR</button>
+        <button class="btn-download" @click="descargarQR(m)">Download QR</button>
       </div>
     </div>
   </main>

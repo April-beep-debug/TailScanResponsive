@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+    <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
     <!-- Header -->
     <header class="header">
       <div class="logo">
-        <img src="../assets/img/mascota.png" alt="Mascota" class="logo-img" />
+        <img src="../assets/img/mascota.png" alt="Pet" class="logo-img" />
         <span class="tail">Tail</span><span class="scan">Scan</span>
       </div>
       <nav>
-        <a href="#" @click.prevent="irAInicio">Inicio</a>
-        <a href="#" @click.prevent="irAGenerarQR">Registrar Mascota</a>
-        <a href="#" class="active">Reporte en Mapa</a>
-        <a href="#">Adopción y Perdidos</a>
-        <a href="#">Cuidados</a>
-        <a href="#">Servicios</a>
+        <a href="#" @click.prevent="irAInicio">Home</a>
+        <a href="#" @click.prevent="irAGenerarQR">Register a Pet</a>
+        <a href="#" class="active">Map Report</a>
+        <a href="#">Adoption and Lost Pets</a>
+        <a href="#">Care</a>
+        <a href="#">Services</a>
       </nav>
       <div class="header-right">
         <button
           class="user-avatar"
-          title="Mis mascotas registradas"
+          title="My registered pets"
           @click="irAMisMascotas"
         >
-          <img v-if="usuario?.profile?.avatar_url" :src="usuario.profile.avatar_url" alt="Foto de perfil" />
+          <img v-if="usuario?.profile?.avatar_url" :src="usuario.profile.avatar_url" alt="Profile photo" />
           <span v-else class="user-avatar-fallback">{{ inicialAvatar(usuario) }}</span>
         </button>
       </div>
@@ -30,13 +30,13 @@
     <!-- Intro -->
     <div class="intro">
       <div class="intro-text">
-        <h1>Mapa de reportes</h1>
-        <p>Registra dónde viste, perdiste o encontraste una mascota para ayudar a reunirla con su familia.</p>
+        <h1>Report map</h1>
+        <p>Record where you saw, lost, or found a pet to help reunite it with its family.</p>
       </div>
       <ul class="stat-strip">
-        <li><span class="stat-dot dot-perdido"></span><b id="statPerdido">0</b> Perdidos</li>
-        <li><span class="stat-dot dot-visto"></span><b id="statVisto">0</b> Vistos</li>
-        <li><span class="stat-dot dot-encontrado"></span><b id="statEncontrado">0</b> Encontrados</li>
+        <li><span class="stat-dot dot-perdido"></span><b id="statPerdido">0</b> Lost</li>
+        <li><span class="stat-dot dot-visto"></span><b id="statVisto">0</b> Seen</li>
+        <li><span class="stat-dot dot-encontrado"></span><b id="statEncontrado">0</b> Found</li>
       </ul>
     </div>
 
@@ -44,24 +44,24 @@
     <div class="toolbar">
       <button id="btnReport" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
-        Nuevo reporte
+        New report
       </button>
 
-      <div class="segmented" role="tablist" aria-label="Filtrar por estado">
-        <button class="segment active" data-filter="todos">Todos</button>
-        <button class="segment" data-filter="perdido"><span class="seg-dot dot-perdido"></span>Perdidos</button>
-        <button class="segment" data-filter="visto"><span class="seg-dot dot-visto"></span>Vistos</button>
-        <button class="segment" data-filter="encontrado"><span class="seg-dot dot-encontrado"></span>Encontrados</button>
+      <div class="segmented" role="tablist" aria-label="Filter by status">
+        <button class="segment active" data-filter="todos">All</button>
+        <button class="segment" data-filter="perdido"><span class="seg-dot dot-perdido"></span>Lost</button>
+        <button class="segment" data-filter="visto"><span class="seg-dot dot-visto"></span>Seen</button>
+        <button class="segment" data-filter="encontrado"><span class="seg-dot dot-encontrado"></span>Found</button>
       </div>
 
       <button id="btnZoomAll" class="btn btn-secondary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3" /></svg>
-        Ver todo
+        View all
       </button>
 
       <span class="gps-indicator" id="gpsIndicator">
         <span class="gps-indicator-dot" id="gpsIndicatorDot"></span>
-        <span id="gpsIndicatorText">Buscando ubicación...</span>
+        <span id="gpsIndicatorText">Finding location...</span>
       </span>
     </div>
 
@@ -71,8 +71,8 @@
 
       <!-- Aviso mientras se elige la ubicación en el mapa -->
       <div class="select-hint" id="selectHint" hidden>
-        <span>Toca el mapa para elegir la ubicación</span>
-        <button type="button" id="btnCancelSelect" class="select-hint-cancel">Cancelar</button>
+        <span>Tap the map to choose a location</span>
+        <button type="button" id="btnCancelSelect" class="select-hint-cancel">Cancel</button>
       </div>
 
       <!-- Backdrop del panel -->
@@ -82,42 +82,42 @@
       <aside id="formPanel" class="drawer">
         <div class="drawer-header">
           <div>
-            <h3>Nuevo reporte</h3>
-            <p>Completa los datos para publicarlo en el mapa</p>
+            <h3>New report</h3>
+            <p>Complete the details to publish it on the map</p>
           </div>
-          <button id="btnCloseForm" class="icon-btn" aria-label="Cerrar">
+          <button id="btnCloseForm" class="icon-btn" aria-label="Close">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
           </button>
         </div>
 
         <form id="petForm" class="drawer-form">
           <div class="form-group">
-            <label for="petPhoto">Fotografía</label>
+              <label for="petPhoto">Photo</label>
             <div class="photo-drop" id="photoDrop">
               <input type="file" id="petPhoto" accept="image/*" hidden>
               <canvas id="captureCanvas" hidden></canvas>
 
               <div class="photo-empty" id="photoEmpty">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" /><circle cx="12" cy="13" r="3.5" /></svg>
-                <span>Agrega una foto de la mascota</span>
-                <small>Ayuda a identificarla</small>
+                <span>Add a pet photo</span>
+                <small>It helps identify the pet</small>
                 <div class="photo-actions">
-                  <button type="button" id="btnOpenCamera" class="photo-action-btn">Usar cámara web</button>
-                  <button type="button" id="btnUploadPhoto" class="photo-action-btn">Subir foto</button>
+                  <button type="button" id="btnOpenCamera" class="photo-action-btn">Use camera</button>
+                  <button type="button" id="btnUploadPhoto" class="photo-action-btn">Upload photo</button>
                 </div>
               </div>
 
               <div class="camera-view" id="cameraView" hidden>
                 <video id="cameraVideo" autoplay playsinline muted></video>
                 <div class="camera-controls">
-                  <button type="button" id="btnCapturePhoto" class="btn btn-primary">Capturar</button>
-                  <button type="button" id="btnCancelCamera" class="btn-text">Cancelar</button>
+                  <button type="button" id="btnCapturePhoto" class="btn btn-primary">Capture</button>
+                  <button type="button" id="btnCancelCamera" class="btn-text">Cancel</button>
                 </div>
               </div>
 
               <div class="photo-preview" id="photoPreviewWrap" hidden>
-                <img id="photoPreview" alt="Vista previa de la mascota">
-                <button type="button" id="btnRemovePhoto" class="photo-remove" aria-label="Quitar foto">
+                <img id="photoPreview" alt="Pet preview">
+                <button type="button" id="btnRemovePhoto" class="photo-remove" aria-label="Remove photo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
                 </button>
               </div>
@@ -126,54 +126,54 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="reportType">Tipo de reporte *</label>
+              <label for="reportType">Report type *</label>
               <select id="reportType" required>
-                <option value="visto">Visto</option>
-                <option value="perdido">Perdido</option>
-                <option value="encontrado">Encontrado</option>
+                <option value="visto">Seen</option>
+                <option value="perdido">Lost</option>
+                <option value="encontrado">Found</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="animalType">Tipo de animal *</label>
+              <label for="animalType">Animal type *</label>
               <select id="animalType" required>
-                <option value="perro">Perro</option>
-                <option value="gato">Gato</option>
-                <option value="otro">Otro</option>
+                <option value="perro">Dog</option>
+                <option value="gato">Cat</option>
+                <option value="otro">Other</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="petName">Nombre de la mascota</label>
-            <input type="text" id="petName" placeholder="Ej: Firulais">
+            <label for="petName">Pet name</label>
+            <input type="text" id="petName" placeholder="e.g. Max">
           </div>
 
           <div class="form-group">
-            <label for="petColor">Color / Señas</label>
-            <input type="text" id="petColor" placeholder="Ej: Marrón con blanco">
+            <label for="petColor">Color / markings</label>
+            <input type="text" id="petColor" placeholder="e.g. Brown and white">
           </div>
 
           <div class="form-group">
-            <label for="petDesc">Descripción detallada *</label>
+            <label for="petDesc">Detailed description *</label>
             <textarea id="petDesc" rows="3" required
-              placeholder="Describe: tamaño, color, señas particulares..."></textarea>
+              placeholder="Describe: size, color, distinctive markings..."></textarea>
           </div>
 
           <div class="form-group">
-            <label>Ubicación exacta *</label>
+            <label>Exact location *</label>
             <div class="location-selector">
-              <span id="coordsDisplay" class="coords-display">Sin seleccionar</span>
+              <span id="coordsDisplay" class="coords-display">Not selected</span>
               <div class="location-btns">
-                <button type="button" id="btnSelectLocation" class="btn-outline">Elegir en el mapa</button>
-                <button type="button" id="btnUseMyLocation" class="btn-outline">Usar mi ubicación</button>
+                <button type="button" id="btnSelectLocation" class="btn-outline">Choose on map</button>
+                <button type="button" id="btnUseMyLocation" class="btn-outline">Use my location</button>
               </div>
             </div>
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-block">Guardar reporte</button>
-            <button type="button" id="btnCancelForm" class="btn-text">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-block">Save report</button>
+            <button type="button" id="btnCancelForm" class="btn-text">Cancel</button>
           </div>
         </form>
       </aside>
@@ -184,17 +184,17 @@
     <!-- Lista de reportes -->
     <div class="list-section">
       <div class="list-header">
-        <h3>Reportes <span id="listFilterLabel">activos</span></h3>
+        <h3>Reports <span id="listFilterLabel">active</span></h3>
         <span id="petCounter" class="badge">0</span>
       </div>
       <div id="petsList" class="reports-list">
         <div class="empty-state">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
-          <p>No hay reportes todavía</p>
+          <p>No reports yet</p>
         </div>
       </div>
       <div class="list-footer">
-        <button id="btnClear" class="btn-text btn-text-danger">Limpiar todo</button>
+        <button id="btnClear" class="btn-text btn-text-danger">Clear all</button>
       </div>
     </div>
   </div>
@@ -247,9 +247,9 @@ onMounted(() => {
         tileAttribution: '© OpenStreetMap'
       },
       status: {
-        visto: { label: 'Visto', color: '#c8850f' },
-        perdido: { label: 'Perdido', color: '#c94a34' },
-        encontrado: { label: 'Encontrado', color: '#1c8a5f' }
+        visto: { label: 'Seen', color: '#c8850f' },
+        perdido: { label: 'Lost', color: '#c94a34' },
+        encontrado: { label: 'Found', color: '#1c8a5f' }
       }
     };
 
@@ -330,7 +330,7 @@ onMounted(() => {
         options: { position: 'bottomright' },
         onAdd: function () {
           const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control locate-control');
-          container.innerHTML = `<a href="#" role="button" aria-label="Centrar en mi ubicación" title="Mi ubicación">${iconSvg(ICON_PATHS.locate)}</a>`;
+          container.innerHTML = `<a href="#" role="button" aria-label="Center on my location" title="My location">${iconSvg(ICON_PATHS.locate)}</a>`;
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.on(container, 'click', (e) => {
             L.DomEvent.preventDefault(e);
@@ -401,23 +401,23 @@ onMounted(() => {
 
     function startWatchingLocation() {
       if (!navigator.geolocation) {
-        setGpsStatus('unavailable', 'GPS no disponible en este dispositivo');
+        setGpsStatus('unavailable', 'GPS unavailable on this device');
         return;
       }
-      setGpsStatus('locating', 'Buscando ubicación...');
+      setGpsStatus('locating', 'Finding location...');
       watchId = navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude, accuracy } = position.coords;
           const first = !state.userLocation;
           state.userLocation = { lat: latitude, lng: longitude };
           updateUserLocationMarker(latitude, longitude, accuracy);
-          setGpsStatus('active', 'Ubicación activa');
+          setGpsStatus('active', 'Location active');
           if (first) state.map.setView([latitude, longitude], 16);
         },
         (err) => {
           setGpsStatus(
             'denied',
-            err.code === 1 ? 'Permiso de ubicación desactivado' : 'No se pudo obtener tu ubicación'
+            err.code === 1 ? 'Location permission is disabled' : 'Could not get your location'
           );
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 }
@@ -429,7 +429,7 @@ onMounted(() => {
         state.map.flyTo([state.userLocation.lat, state.userLocation.lng], 17, { duration: 0.7 });
         pulseGpsDot();
       } else {
-        showToast('Buscando tu señal GPS, un momento', 'warning');
+        showToast('Finding your GPS signal, one moment', 'warning');
         startWatchingLocation();
       }
     }
@@ -470,7 +470,7 @@ onMounted(() => {
         <div class="pin-popup">
           ${photo}
           <span class="pin-popup-status" style="background:${cfg.color}1a; color:${cfg.color}">${cfg.label}</span>
-          <b>${pet.name || 'Sin nombre'}</b>
+          <b>${pet.name || 'Unnamed'}</b>
           <p>${pet.description || ''}</p>
         </div>`;
     }
@@ -552,7 +552,7 @@ onMounted(() => {
         if (!shouldShow && isShown) state.map.removeLayer(layer);
       });
 
-      DOM.listFilterLabel.textContent = filter === 'todos' ? 'activos' : CONFIG.status[filter].label.toLowerCase() + 's';
+      DOM.listFilterLabel.textContent = filter === 'todos' ? 'active' : CONFIG.status[filter].label.toLowerCase() + 's';
       renderPets();
     }
 
@@ -592,13 +592,13 @@ onMounted(() => {
 
     async function openCamera() {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        showToast('Tu navegador no permite acceder a la cámara', 'warning');
+        showToast('Your browser cannot access the camera', 'warning');
         return;
       }
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
       } catch (err) {
-        showToast('No se pudo abrir la cámara. Revisa los permisos del navegador.', 'warning');
+        showToast('Could not open the camera. Check your browser permissions.', 'warning');
         return;
       }
       DOM.cameraVideo.srcObject = mediaStream;
@@ -635,7 +635,7 @@ onMounted(() => {
     }
 
     function deletePet(id) {
-      if (!confirm('¿Eliminar este reporte?')) return;
+      if (!confirm('Delete this report?')) return;
       state.pets = state.pets.filter(p => p.id !== id);
       removeMarker(id);
       renderPets();
@@ -644,7 +644,7 @@ onMounted(() => {
 
     function clearAllPets() {
       if (state.pets.length === 0) return;
-      if (!confirm('¿Eliminar todos los reportes?')) return;
+      if (!confirm('Delete all reports?')) return;
       state.pets = [];
       clearMarkers();
       renderPets();
@@ -655,11 +655,11 @@ onMounted(() => {
     function timeAgo(iso) {
       const diffMs = Date.now() - new Date(iso).getTime();
       const mins = Math.floor(diffMs / 60000);
-      if (mins < 1) return 'justo ahora';
-      if (mins < 60) return `hace ${mins} min`;
+      if (mins < 1) return 'just now';
+      if (mins < 60) return `${mins} min ago`;
       const hours = Math.floor(mins / 60);
-      if (hours < 24) return `hace ${hours} h`;
-      return `hace ${Math.floor(hours / 24)} d`;
+      if (hours < 24) return `${hours} hr ago`;
+      return `${Math.floor(hours / 24)} days ago`;
     }
 
     function renderPets() {
@@ -669,31 +669,31 @@ onMounted(() => {
         .sort((a, b) => b.id - a.id);
 
       if (visible.length === 0) {
-        container.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p>No hay reportes en esta categoría</p></div>`;
+        container.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p>No reports in this category</p></div>`;
         return;
       }
 
       container.innerHTML = visible.map(pet => {
         const cfg = CONFIG.status[pet.status];
         const thumb = pet.photo
-          ? `<img src="${pet.photo}" alt="${pet.name || 'Mascota'}">`
+          ? `<img src="${pet.photo}" alt="${pet.name || 'Pet'}">`
           : `<span>${EMOJIS[pet.animalType] || EMOJIS.otro}</span>`;
         return `
         <div class="report-row">
           <span class="report-thumb" style="--ring:${cfg.color}">${thumb}</span>
           <div class="report-main">
             <div class="report-top">
-              <span class="report-name">${pet.name || 'Sin nombre'}</span>
+              <span class="report-name">${pet.name || 'Unnamed'}</span>
               <span class="status-tag" style="color:${cfg.color}"><span class="status-dot" style="background:${cfg.color}"></span>${cfg.label}</span>
             </div>
             <p class="report-desc">${pet.description || ''}</p>
             <span class="report-time">${timeAgo(pet.createdAt)}</span>
           </div>
           <div class="report-actions">
-            <button class="row-btn" data-focus="${pet.id}" aria-label="Ver en el mapa" title="Ver en el mapa">
+            <button class="row-btn" data-focus="${pet.id}" aria-label="View on map" title="View on map">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </button>
-            <button class="row-btn row-btn-danger" data-id="${pet.id}" aria-label="Eliminar reporte" title="Eliminar">
+            <button class="row-btn row-btn-danger" data-id="${pet.id}" aria-label="Delete report" title="Delete">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
             </button>
           </div>
@@ -753,7 +753,7 @@ onMounted(() => {
       state.selectedLocation = null;
       removeSelectionMarker();
       endLocationSelection();
-      DOM.coordsDisplay.textContent = 'Sin seleccionar';
+      DOM.coordsDisplay.textContent = 'Not selected';
       DOM.coordsDisplay.classList.remove('selected');
     }
 
@@ -764,7 +764,7 @@ onMounted(() => {
     function startLocationSelection() {
       state.isSelectingLocation = true;
       DOM.mapShell.classList.add('selecting');
-      DOM.coordsDisplay.textContent = 'Haz clic en el mapa...';
+      DOM.coordsDisplay.textContent = 'Click the map...';
       DOM.coordsDisplay.classList.remove('selected');
       DOM.selectHint.hidden = false;
       hideDrawerOnly();
@@ -777,7 +777,7 @@ onMounted(() => {
         showSelectionMarker(state.userLocation.lat, state.userLocation.lng);
         resumeFormAfterSelection();
       } else {
-        showToast('Todavía no tenemos tu ubicación GPS', 'warning');
+        showToast('We do not have your GPS location yet', 'warning');
       }
     }
 
@@ -792,22 +792,22 @@ onMounted(() => {
     function handleFormSubmit(e) {
       e.preventDefault();
       if (!state.selectedLocation) {
-        showToast('Selecciona una ubicación en el mapa antes de guardar', 'warning');
+        showToast('Choose a location on the map before saving', 'warning');
         return;
       }
       const petData = {
-        name: DOM.petName.value.trim() || 'Sin nombre',
+        name: DOM.petName.value.trim() || 'Unnamed',
         animalType: DOM.animalType.value,
         status: DOM.reportType.value,
-        color: DOM.petColor.value.trim() || 'No especificado',
-        description: DOM.petDesc.value.trim() || 'Sin descripción',
+        color: DOM.petColor.value.trim() || 'Not specified',
+        description: DOM.petDesc.value.trim() || 'No description',
         photo: state.selectedPhoto,
         lat: state.selectedLocation.lat,
         lng: state.selectedLocation.lng
       };
       addPet(petData);
       hideForm();
-      showToast('Reporte guardado. Ya aparece en el mapa.', 'success');
+      showToast('Report saved. It is now visible on the map.', 'success');
     }
 
     // ---------- Eventos ----------

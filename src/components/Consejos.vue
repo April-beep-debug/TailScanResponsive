@@ -1,6 +1,6 @@
 <template>
   <div class="consejos-container">
-    <button class="page-back-button" @click="$router.back()" aria-label="Volver">←</button>
+    <button class="page-back-button" @click="$router.back()" aria-label="Back">←</button>
     <!-- HERO / FORM -->
     <section class="hero-wrap">
       <div class="blob-left"></div>
@@ -14,41 +14,41 @@
         <span></span><span></span><span></span><span></span><span></span>
       </div>
       <div class="hero-content">
-        <h1>Consejos de la Comunidad</h1>
+        <h1>Community tips</h1>
         <div class="divider">
           <span class="line"></span>
           <span class="paw-icon">🐾</span>
           <span class="line"></span>
         </div>
-        <p>Comparte tu experiencia y ayuda a otras personas a cuidar mejor de sus mascotas (perros y gatos)</p>
+        <p>Share your experience and help others take better care of their pets (dogs and cats)</p>
       </div>
       <div class="form-card">
-        <div class="form-title">💬 Comparte tu consejo</div>
+        <div class="form-title">💬 Share your tip</div>
         <div class="form-row">
           <div class="input-field">
             <span class="icon">🐾</span>
             <select>
-              <option>Selecciona una categoría</option>
-              <option>Perro</option>
-              <option>Gato</option>
+              <option>Select a category</option>
+              <option>Dog</option>
+              <option>Cat</option>
             </select>
           </div>
           <div class="input-field">
             <span class="icon">✏️</span>
-            <input type="text" placeholder="Título de tu consejo">
+            <input type="text" placeholder="Your tip title">
           </div>
         </div>
         <div class="textarea-field">
           <span class="icon">📝</span>
-          <textarea placeholder="Escribe tu consejo aquí..."></textarea>
+          <textarea placeholder="Write your tip here..."></textarea>
         </div>
-        <button class="submit-btn" @click="enviarConsejo">📩 Enviar Consejo</button>
+        <button class="submit-btn" @click="enviarConsejo">📩 Send tip</button>
       </div>
     </section>
 
     <!-- CONSEJOS COMPARTIDOS -->
     <h2 class="shared-title">
-      Consejos Compartidos por la Comunidad
+      Tips shared by the community
       <div class="divider" style="margin-top:14px;">
         <span class="line"></span>
         <span class="paw-icon">🐾</span>
@@ -60,14 +60,14 @@
         <span class="bookmark">🔖</span>
         <div class="tip-left">
           <span class="badge" :class="consejo.tipo === 'perro' ? 'dog' : 'cat'">
-            🐾 {{ consejo.tipo === 'perro' ? 'Perro' : 'Gato' }}
+            🐾 {{ consejo.tipo === 'perro' ? 'Dog' : 'Cat' }}
           </span>
           <h3>{{ consejo.titulo }}</h3>
           <p>{{ consejo.descripcion }}</p>
           <div class="author">
             <img :src="consejo.avatar" :alt="consejo.autor">
             <div>
-              <div class="name">Por {{ consejo.autor }}</div>
+              <div class="name">By {{ consejo.autor }}</div>
               <div class="time">{{ consejo.fecha }}</div>
             </div>
           </div>
@@ -95,27 +95,27 @@ const consejos = ref([
   {
     id: 1,
     tipo: 'perro',
-    titulo: 'Cómo reducir la ansiedad por separación',
-    descripcion: 'Usa juguetes interactivos y deja música suave cuando salgas de casa.',
+    titulo: 'How to reduce separation anxiety',
+    descripcion: 'Use interactive toys and leave soft music on when you leave home.',
     autor: 'María G.',
     avatar: 'https://i.pravatar.cc/40?img=47',
-    fecha: 'Hace 2 días',
+    fecha: '2 days ago',
     emoji: '🐶'
   },
   {
     id: 2,
     tipo: 'gato',
-    titulo: 'Enriquecimiento ambiental para gatos',
-    descripcion: 'Instala estantes en las paredes y usa cajas de cartón para estimular su curiosidad.',
+    titulo: 'Environmental enrichment for cats',
+    descripcion: 'Install wall shelves and use cardboard boxes to stimulate their curiosity.',
     autor: 'Carlos R.',
     avatar: 'https://i.pravatar.cc/40?img=12',
-    fecha: 'Hace 4 días',
+    fecha: '4 days ago',
     emoji: '🐱'
   }
 ]);
 
 const enviarConsejo = () => {
-  alert('✅ ¡Tu consejo ha sido enviado! Gracias por compartir.');
+  alert('✅ Your tip has been sent! Thanks for sharing.');
 };
 </script>
 
