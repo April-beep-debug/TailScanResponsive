@@ -357,7 +357,7 @@ onMounted(async () => {
       <div class="team-card">
         <span class="badge-icon">✏️</span>
         <div class="photo-wrap">
-          <img src="../assets/img/kenny.png" alt="Kenny Martínez">
+          <img src="../assets/img/Kenny.png" alt="Kenny Martínez">
           <span class="paw-tag">🐾</span>
         </div>
         <h3>Kenny Martínez</h3>
@@ -369,7 +369,7 @@ onMounted(async () => {
       <div class="team-card orange-role">
         <span class="badge-icon orange">👑</span>
         <div class="photo-wrap">
-          <img src="../assets/img/avril.png" alt="María Sánchez">
+          <img src="../assets/img/avril.png" alt="Avril Rendon">
           <span class="paw-tag orange">🐾</span>
         </div>
         <h3>Avril Rendon</h3>
