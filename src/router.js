@@ -15,6 +15,7 @@ import Veterinarios from '@/components/Veterinarios.vue'
 import Collares from '@/components/Collares.vue'
 import PagosCollares from '@/components/PagosCollares.vue'
 import Donaciones from '@/components/Donaciones.vue'
+import VerifyEmail from './components/VerifyEmail.vue'  
 
 const routes = [
   {
@@ -88,6 +89,12 @@ const routes = [
     path: '/donaciones',
     name: 'Donaciones',
     component: Donaciones
+  }
+  ,
+  {
+    path: '/verify-email',
+    name: 'VerifyEmail',
+    component: VerifyEmail
   }
 ]
 

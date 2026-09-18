@@ -23,12 +23,16 @@ const signUp = async () => {
       password: password.value,
     })
     if (error) throw error
-    router.push('/home')
+
+    if (data?.requireEmailVerification) {
+      router.push({ name: 'VerifyEmail', query: { email: user.value } })
+    } else if (data?.accessToken) {
+      router.push('/home')
+    }
   } catch (error) {
     alert('Error creating account: ' + error.message)
   }
 }
-
 </script>
 
 <template>
