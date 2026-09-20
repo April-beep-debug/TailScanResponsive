@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { insforge } from '../lib/insforgeClient'
 
@@ -8,6 +8,11 @@ const password = ref('')
 const showPassword = ref(false)
 const router = useRouter()
 
+onMounted(async () => {
+  const { data } = await insforge.auth.getCurrentUser()
+  if (data?.user) router.replace('/home')
+})
+
 const togglePassword = () => {
   showPassword.value = !showPassword.value
 }
@@ -15,7 +20,7 @@ const togglePassword = () => {
 const socialLogin = async (provider) => {
   try {
     const { data, error } = await insforge.auth.signInWithOAuth(provider, {
-      redirectTo: `${window.location.origin}/home`,
+      redirectTo: window.location.origin,
     })
     if (error) throw error
     if (data?.url) window.location.href = data.url

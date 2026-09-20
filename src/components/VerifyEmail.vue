@@ -1,40 +1,4 @@
 <template>
-  <div>
-    <h2>Verifica tu correo</h2>
-    <p>Enviamos un código a {{ email }}</p>
-    <input v-model="code" placeholder="Código de 6 dígitos" maxlength="6" />
-    <button @click="verify">Verificar</button>
-    <button @click="resend">Reenviar código</button>
-    <p v-if="errorMsg">{{ errorMsg }}</p>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { insforge } from '../lib/insforge'; // tu cliente ya creado
-
-const route = useRoute();
-const router = useRouter();
-const email = route.query.email;
-const code = ref('');
-const errorMsg = ref('');
-
-async function verify() {
-  const { error } = await insforge.auth.verifyEmail({ email, code: code.value });
-  if (error) {
-    errorMsg.value = 'Código inválido o expirado';
-  } else {
-    router.push('/login'); // o loguear directo si el SDK devuelve sesión
-  }
-}
-
-async function resend() {
-  await insforge.auth.resendVerificationEmail({ email });
-  errorMsg.value = 'Nuevo código enviado';
-}
-</script>
-<template>
   <div class="verify-container">
     <h2>Verifica tu correo</h2>
     <p>Enviamos un código a {{ email }}</p>
